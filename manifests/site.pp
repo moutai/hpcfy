@@ -1,3 +1,3 @@
-isdfmport "templates"
+import "templates"
 import "nodes"
 
