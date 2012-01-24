@@ -1,0 +1,8 @@
+start the instances
+get the ips
+add the current public key to all the nodes
+set the hostnames
+send the hosts file
+send the git key to the clusternode0
+send the puppet file to all the nodes
+
