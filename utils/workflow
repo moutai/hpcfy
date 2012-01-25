@@ -4,5 +4,6 @@ add the current public key to all the nodes
 set the hostnames
 send the hosts file
 send the git key to the clusternode0
-send the puppet file to all the nodes
+optional: install puppetmaster on master and puppet on puppet clients
+send the puppet conf file to all the nodes
 

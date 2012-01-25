@@ -6,9 +6,11 @@ f = open('hosts', 'r')
 for line in f.readlines():
 	ip=line.strip().rstrip()
 	line=line.split()
-	print "cat hosts | ssh root@"+line[0]+" \"cat>>/etc/hosts\""
-	p=subprocess.Popen("cat hosts | ssh root@"+line[0]+" \"cat>>/etc/hosts\"", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-#	print p
+	print "cat  ~/.ssh/id_rsa.pub | ssh root@"+line[0]+" \"cat>>~/.ssh/authorized_keys2\""
+	p=subprocess.Popen("cat  ~/.ssh/id_rsa.pub | ssh root@"+line[0]+" \"cat>>~/.ssh/authorized_keys2\"", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+	for line1 in p.stdout.readlines():
+                print line1
+
 
 f.close()
 
