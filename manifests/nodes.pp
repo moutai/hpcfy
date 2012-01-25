@@ -1,4 +1,4 @@
-node /^clusternode[0-9]+/ {
+node "default" { 
 
 include cluster
 }
