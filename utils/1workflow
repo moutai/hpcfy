@@ -1,0 +1,17 @@
+start the instances
+	startinstances.py
+wait for instances to start
+	wait......:)
+get the ips
+	getips.py
+add the current public key to all the nodes
+	addpubkeytonodes.py
+set the hostnames
+	sethostnames.py
+send the hosts file
+	sendhostsfile.py
+send the git key to the clusternode0
+	copygitkey.py
+optional: install puppetmaster on master and puppet on puppet clients
+	python installpuppet.py
+	
