@@ -1,22 +1,48 @@
+Step 1 Initialization
+
 start the instances
-	startinstances.py
+	python startinstances.py
 wait for instances to start
 	wait......:)
 get the ips
-	getips.py
+	python getips.py
 add the current public key to all the nodes
-	addpubkeytonodes.py
+	python addpubkeytonodes.py
 set the hostnames
-	sethostnames.py
+	python sethostnames.py
 send the hosts file
-	sendhostsfile.py
+	python sendhostsfile.py
 send the git key to the clusternode0
-	copygitkey.py
+	python copygitkey.py
 optional: install puppetmaster on master and puppet on puppet clients
 	python installpuppet.py
+install git to the clusternode0, set up the git init and the remote git hub repo.
+	python installgit.py
+deploy initial config to clusternode0
+	rake cleandeploy	
 copy puppet conf to all the nodes and restart services
 	python copypuppetconf.py
-install git to the clusternode0
-	python installgit 
+sign the certificates of the nodes
+	python signcerts.py
+Step 2 update commit deploy
+
+deploy initial config to clusternode0
+	rake deploy
+trigger apply to all nodes 
+	python triggerapplyall.py	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 
 	

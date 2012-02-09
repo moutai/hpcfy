@@ -4,7 +4,12 @@ SSH= 'ssh'
 
 task :deploy do
 sh "git push"
-sh "#{SSH} #{USER}@#{PUPPETMASTER} cd /etc/puppet; git pull origin master"
+sh "#{SSH} #{USER}@#{PUPPETMASTER} 'cd /etc/puppet; git pull origin master'"
+end
+
+task :cleandeploy do
+sh "git push"
+sh "#{SSH} #{USER}@#{PUPPETMASTER} 'ssh -T -o StrictHostKeyChecking=no git@github.com;cd /etc/puppet; git pull origin master; /etc/init.d/puppetmaster restart'"
 end
 
 
@@ -19,6 +24,15 @@ when 4 then "Puppet found errors."
 end
 end
 end
+
+
+
+task :terminateallinstances do
+sh "euca-describe-instances|grep -e 'INSTANCE'|awk -F \" \" '\{print \$2\}'| while read line; do euca-terminate-instances \$line ; done"
+end
+
+
+
 
 
 
