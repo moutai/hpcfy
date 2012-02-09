@@ -10,8 +10,6 @@ for line in f.readlines():
 	p=subprocess.Popen("cat  ~/.ssh/id_rsa.pub | ssh root@"+line[0]+" \"cat>>~/.ssh/authorized_keys2\"", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 	for line1 in p.stdout.readlines():
                 print line1
-
-
 f.close()
 
 
