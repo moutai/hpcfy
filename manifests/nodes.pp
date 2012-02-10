@@ -1,5 +1,5 @@
 node "default" { 
 
-include cluster
+#include cluster
 include filestest
 }
