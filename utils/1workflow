@@ -24,6 +24,8 @@ copy puppet conf to all the nodes and restart services
 	python copypuppetconf.py
 sign the certificates of the nodes
 	python signcerts.py
+	
+	
 Step 2 update commit deploy
 
 deploy initial config to clusternode0
@@ -32,6 +34,12 @@ trigger apply to all nodes
 	python triggerapplyall.py	
 	
 	
+	
+Step 3 creating the beowulf cluster
+
+
+
+
 	
 	
 	
