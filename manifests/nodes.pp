@@ -1,5 +1,6 @@
 node "default" { 
-
 #include cluster
-include filestest
+#include filestest
+include ntp
 }
+ 
