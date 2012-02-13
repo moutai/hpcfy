@@ -25,11 +25,12 @@ class nfsserver{
 	file { "/etc/exports.d":
 	ensure => directory,
 	}
+	
 	file { "/etc/exports.d/${name}":
 	content => "${path} ${allowed}(${options})\n",
 	notify => Exec["update-etc-exports"],
 	}
-	}
+	
 }
 
 class nfsclient
