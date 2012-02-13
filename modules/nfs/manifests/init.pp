@@ -17,19 +17,21 @@ class nfsserver{
 	
 	
 	define share( $path, $allowed, $options = "" ) {
-	include nfsserver
-	file { $path:
-	ensure => directory,
-	}
-	
-	file { "/etc/exports.d":
-	ensure => directory,
-	}
-	
-	file { "/etc/exports.d/${name}":
-	content => "${path} ${allowed}(${options})\n",
-	notify => Exec["update-etc-exports"],
-	}
+		include nfsserver
+		
+		file { $path:
+			ensure => directory,
+		}
+		
+		file { "/etc/exports.d":
+		ensure => directory,
+		}
+		
+		file { "/etc/exports.d/${name}":
+		content => "${path} ${allowed}(${options})\n",
+		notify => Exec["update-etc-exports"],
+		}
+		}
 	
 }
 
