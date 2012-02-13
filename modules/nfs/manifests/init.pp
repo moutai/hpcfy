@@ -17,7 +17,7 @@ class nfsserver{
 	
 	
 	define share( $path, $allowed, $options = "" ) {
-	include nfs
+	include nfsserver
 	file { $path:
 	ensure => directory,
 	}
