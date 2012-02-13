@@ -7,7 +7,7 @@ node "default" {
  
  
 node "clusternode0"{
-	nfsserver::share { "data":
+	nfs::share { "data":
 	path => "/data",
 	allowed => "10.80.160.0/24",
 	options => "rw,sync,no_root_squash",
