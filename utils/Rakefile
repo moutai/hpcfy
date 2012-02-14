@@ -3,7 +3,7 @@ USER = 'root'
 SSH= 'ssh'
 
 task :deploy do
-sh "git pull"
+sh "git pull origin master"
 sh "#{SSH} #{USER}@#{PUPPETMASTER} 'cd /etc/puppet; git pull origin master'"
 end
 
