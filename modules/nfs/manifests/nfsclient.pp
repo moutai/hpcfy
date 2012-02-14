@@ -9,7 +9,7 @@ class nfsclient
 		#require => Package["nfs-common"],
 		#}
 		    
-		 mount { "/home":
+		mount { "/home":
         device  => "clusternode0:/data",
         fstype  => "nfs",
         ensure  => "mounted",

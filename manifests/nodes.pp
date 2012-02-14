@@ -3,6 +3,7 @@ node "default" {
 	#include filestest
 	#include ntp
 	include nfsclient
+	include user
 }
  
  
