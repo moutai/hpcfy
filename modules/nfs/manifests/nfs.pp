@@ -1,4 +1,4 @@
-class nfs{
+class nfs::server{
 
 	package { "nfs-kernel-server": ensure => installed }
 	
@@ -17,7 +17,7 @@ class nfs{
 	
 	
 	define share( $path, $allowed, $options = "" ) {
-	include nfs
+	include nfs::server
 	
 	file { $path:
 		ensure => directory,

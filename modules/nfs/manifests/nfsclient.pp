@@ -1,4 +1,4 @@
-class nfsclient
+class nfs::client
 {
 	   package { "nfs-common": ensure => installed }
 	

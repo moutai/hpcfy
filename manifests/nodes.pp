@@ -3,7 +3,7 @@ node default {
 	#include filestest
 	#include ntp
 	
-	include nfsclient
+	include nfs::client
 	include user::virtual
 	include user::sysadmins
 	include user::developers
@@ -11,7 +11,7 @@ node default {
  
  
 node "clusternode0" inherits default{
-	nfs::share { "data":
+	nfs::server::share { "data":
 	path => "/data",
 	allowed => "10.80.160.0/24",
 	options => "rw,sync,no_root_squash",
