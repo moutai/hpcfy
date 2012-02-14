@@ -2,8 +2,8 @@ node "default" {
 	#include cluster
 	#include filestest
 	#include ntp
-	include nfsclient
 	include user
+	include nfsclient
 }
  
  
