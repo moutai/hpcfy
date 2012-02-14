@@ -9,8 +9,11 @@ class nfsclient
 		require => Package["nfs-common"],
 		}
 		    
-		exec { "mount-home":
-		command => "mount clusternode0:/data /home",
-		refreshonly => true,
-		}
+		 mount { "/home":
+        device  => "clusternode0:/data",
+        fstype  => "nfs",
+        ensure  => "mounted",
+        options => "defaults",
+        atboot  => true,
+    	}
 }
