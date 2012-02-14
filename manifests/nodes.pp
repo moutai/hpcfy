@@ -1,4 +1,4 @@
-node "default" { 
+node default { 
 	#include cluster
 	#include filestest
 	#include ntp
@@ -7,7 +7,7 @@ node "default" {
 }
  
  
-node "clusternode0"{
+node "clusternode0" inherits default{
 	nfs::share { "data":
 	path => "/data",
 	allowed => "10.80.160.0/24",
