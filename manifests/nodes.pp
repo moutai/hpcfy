@@ -2,8 +2,11 @@ node default {
 	#include cluster
 	#include filestest
 	#include ntp
-	include user
+	
 	include nfsclient
+	include user::virtual
+	include user::sysadmins
+	include user::developers
 }
  
  
