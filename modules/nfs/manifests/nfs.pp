@@ -13,7 +13,7 @@ class nfs{
 	command => "/bin/cat /etc/exports.d/* >/etc/exports",
 	notify => Service["nfs-kernel-server"],
 	refreshonly => true,
-	}
+}
 	
 	
 	define share( $path, $allowed, $options = "" ) {

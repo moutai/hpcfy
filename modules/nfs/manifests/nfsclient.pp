@@ -1,6 +1,6 @@
 class nfsclient
 {
-	    package { "nfs-common": ensure => installed }
+	   package { "nfs-common": ensure => installed }
 	
 		service { "nfs-common":
 		ensure => running,
