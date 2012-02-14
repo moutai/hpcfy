@@ -1,2 +1,3 @@
 import "nodes"
+import "../modules/*"
 
