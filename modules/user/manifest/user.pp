@@ -1,4 +1,4 @@
-
+class user{
 add_user { hpcuser:
                 email    => "go@email.com",
                 uid      => 5001
@@ -80,3 +80,4 @@ define add_user ( $email, $uid ) {
     }
     
     
+}
