@@ -13,24 +13,24 @@ class nfs{
 	command => "/bin/cat /etc/exports.d/* >/etc/exports",
 	notify => Service["nfs-kernel-server"],
 	refreshonly => true,
-}
+	}
 	
 	
 	define share( $path, $allowed, $options = "" ) {
-		include nfs
-		
-		file { $path:
-			ensure => directory,
-		}
-		
-		file { "/etc/exports.d":
+	include nfs
+	
+	file { $path:
 		ensure => directory,
-		}
-		
-		file { "/etc/exports.d/${name}":
-		content => "${path} ${allowed}(${options})\n",
-		notify => Exec["update-etc-exports"],
-		}
+	}
+	
+	file { "/etc/exports.d":
+	ensure => directory,
+	}
+	
+	file { "/etc/exports.d/${name}":
+	content => "${path} ${allowed}(${options})\n",
+	notify => Exec["update-etc-exports"],
+	}
 	}
 	
 }
