@@ -18,7 +18,7 @@ class user::virtual
 	}
 	
 	exec { "fix the ssh keys for password less internode access":
-	command => "ssh-keygen -t dsa -P '' -f /home/hpcuser/.ssh/id_dsa; cat /home/hpcuser/.ssh/id_dsa.pub >> /home/hpcuser/.ssh/authorized_keys",
+	command => "mkdir /home/hpcuser/.ssh;ssh-keygen -t dsa -P '' -f /home/hpcuser/.ssh/id_dsa; cat /home/hpcuser/.ssh/id_dsa.pub >> /home/hpcuser/.ssh/authorized_keys",
 	require => File["/home/hpcuser"],
 	refreshonly => true,
 	}
