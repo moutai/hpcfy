@@ -4,9 +4,9 @@ node default {
 	#include ntp
 	
 	include nfsclient
-	include user_virtual
-	include user_sysadmins
-	#include user::developers
+	include user::virtual
+	include user::sysadmins
+	include user::developers
 }
  
  

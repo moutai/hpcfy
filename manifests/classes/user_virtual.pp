@@ -1,4 +1,4 @@
-class user_virtual
+class user::virtual
 {
 	@user { "hpcuser": }
 	@user { "ladmin": }
