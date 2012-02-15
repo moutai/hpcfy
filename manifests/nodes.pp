@@ -5,7 +5,7 @@ node default {
 	
 	include nfsclient
 	include user_virtual
-	#include user::sysadmins
+	include user_sysadmins
 	#include user::developers
 }
  
