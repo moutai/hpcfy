@@ -1,6 +1,13 @@
 class user::virtual
 {
+	file { "/home/hpcuser":
+    ensure => "directory",
+    owner  => "hpcuser",
+    group  => "developers",
+    mode   => 750,
+	}
 	@user { "hpcuser": 
+		require => File["/home/hpcuser"],
 		ensure => "present",
 		uid => "5001",
 		gid =>"5001",
@@ -9,6 +16,8 @@ class user::virtual
 		shell => "/bin/bash",
 		managehome => true
 	}
+	
+	
 	@user { "ladmin": 
 		ensure => "present",
 		uid => "5002",
