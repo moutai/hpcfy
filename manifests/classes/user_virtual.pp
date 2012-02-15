@@ -41,11 +41,11 @@ class user::virtual
 		shell => "/bin/bash",
 		managehome => true
 	}
-	exec { "fix the ssh keys for password less internode access":
-	command => "ssh-keygen -t dsa -P '' -f /home/ladmin/.ssh/id_dsa; cat /home/ladmin/.ssh/id_dsa.pub >>/home/ladmin/.ssh/authorized_keys",
-	require => File["/home/ladmin"],
-	refreshonly => true,
-	}
+	#exec { "fix the ssh keys for password less internode access":
+	#command => "ssh-keygen -t dsa -P '' -f /home/ladmin/.ssh/id_dsa; cat /home/ladmin/.ssh/id_dsa.pub >>/home/ladmin/.ssh/authorized_keys",
+	#require => File["/home/ladmin"],
+	#refreshonly => true,
+	#}
 	
 	
 	
