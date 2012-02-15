@@ -6,7 +6,7 @@ class user::virtual
 		gid =>"5001",
 		comment =>"hpc user",
 		home => "/home/hpcuser",
-		shell => "bin/bash",
+		shell => "/bin/bash",
 	}
 	@user { "ladmin": 
 		ensure => "present",
@@ -14,7 +14,7 @@ class user::virtual
 		gid =>"5002",
 		comment =>"admin",
 		home => "/home/admin",
-		shell => "bin/bash",
+		shell => "/bin/bash",
 	}
 	
 }
