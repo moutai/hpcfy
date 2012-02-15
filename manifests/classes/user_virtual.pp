@@ -7,6 +7,7 @@ class user::virtual
 		comment =>"hpc user",
 		home => "/home/hpcuser",
 		shell => "/bin/bash",
+		managehome => true
 	}
 	@user { "ladmin": 
 		ensure => "present",
@@ -15,6 +16,7 @@ class user::virtual
 		comment =>"admin",
 		home => "/home/admin",
 		shell => "/bin/bash",
+		managehome => true
 	}
 	
 	@group { "sysadmins":
