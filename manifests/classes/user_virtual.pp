@@ -18,12 +18,18 @@ class user::virtual
 	}
 	
 	
+	file { "/home/ladmin":
+    ensure => "directory",
+    owner  => "ladmin",
+    group  => "sysadmins",
+    mode   => 750,
+	}
 	@user { "ladmin": 
 		ensure => "present",
 		uid => "5002",
 		gid =>"5002",
 		comment =>"admin",
-		home => "/home/admin",
+		home => "/home/ladmin",
 		shell => "/bin/bash",
 		managehome => true
 	}
