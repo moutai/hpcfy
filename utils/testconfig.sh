@@ -1,6 +1,7 @@
 
-#git commit -a; 
+git add ../.;
 
+git commit -a; 
 git push; 
 
 
