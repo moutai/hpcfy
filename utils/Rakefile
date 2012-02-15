@@ -4,7 +4,7 @@ SSH= 'ssh'
 
 task :deploy do
 sh "git pull origin master"
-sh "#{SSH} #{USER}@#{PUPPETMASTER} 'cd /etc/puppet; git pull origin master'"
+sh "#{SSH} #{USER}@#{PUPPETMASTER} 'cd /etc/puppet; git pull origin master; chown -R puppet:puppet /etc/puppet'"
 end
 
 task :cleandeploy do
