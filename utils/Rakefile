@@ -9,7 +9,7 @@ end
 
 task :cleandeploy do
 sh "git pull"
-sh "#{SSH} #{USER}@#{PUPPETMASTER} 'ssh -T -o StrictHostKeyChecking=no git@github.com;cd /etc/puppet; git pull origin master; /etc/init.d/puppetmaster restart'"
+sh "#{SSH} #{USER}@#{PUPPETMASTER} 'ssh -T -o StrictHostKeyChecking=no git@github.com;cd /etc/puppet; git pull origin master;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster restart'"
 end
 
 
