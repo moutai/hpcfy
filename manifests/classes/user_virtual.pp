@@ -7,7 +7,7 @@ class user::virtual
     mode   => 750,
 	}
 	@user { "hpcuser": 
-		require => File["/home/hpcuser"],
+		notify => File["/home/hpcuser"],
 		ensure => "present",
 		uid => "5001",
 		gid =>"5001",
@@ -17,6 +17,13 @@ class user::virtual
 		managehome => true
 	}
 	
+	exec { "fix the ssh keys for password less internode access":
+	command => "ssh-keygen -t dsa -P '' -f /home/hpcuser/.ssh/id_dsa; cat /home/hpcuser/.ssh/id_dsa.pub >> /home/hpcuser/.ssh/authorized_keys",
+	require => File["/home/hpcuser"],
+	refreshonly => true,
+	}
+	
+	
 	
 	file { "/home/ladmin":
     ensure => "directory",
@@ -25,6 +32,7 @@ class user::virtual
     mode   => 750,
 	}
 	@user { "ladmin": 
+		require => File["/home/ladmin"],
 		ensure => "present",
 		uid => "5002",
 		gid =>"5002",
@@ -33,6 +41,13 @@ class user::virtual
 		shell => "/bin/bash",
 		managehome => true
 	}
+	exec { "fix the ssh keys for password less internode access":
+	command => "ssh-keygen -t dsa -P '' -f /home/ladmin/.ssh/id_dsa; cat /home/ladmin/.ssh/id_dsa.pub >>/home/ladmin/.ssh/authorized_keys",
+	require => File["/home/ladmin"],
+	refreshonly => true,
+	}
+	
+	
 	
 	@group { "sysadmins":
 		gid => "5002",
