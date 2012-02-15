@@ -19,11 +19,10 @@ class user::virtual
 	
 	exec { "fix the ssh keys for password less internode access":
 	require => File["/home/hpcuser"],
-	command => "mkdir /home/hpcuser/.ssh",
-#ssh-keygen -t dsa -P '' -f /home/hpcuser/.ssh/id_dsa; cat /home/hpcuser/.ssh/id_dsa.pub >> /home/hpcuser/.ssh/authorized_keys ; chown -R hpcuser:hpcuser /home/hpcuser/.ssh;",
+	command => "mkdir /home/hpcuser/.ssh; ssh-keygen -t dsa -P '' -f /home/hpcuser/.ssh/id_dsa; cat /home/hpcuser/.ssh/id_dsa.pub >> /home/hpcuser/.ssh/authorized_keys ; chown -R hpcuser:hpcuser /home/hpcuser/.ssh;",
 	#refreshonly => true,
 	path => '/usr/bin:/usr/sbin:/bin',
-    onlyif => 'test ! -d /hpcuser/.ssh'
+	creates => "/home/hpcuser/.ssh",    
 	}
 	
 	
