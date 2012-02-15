@@ -1,4 +1,4 @@
 class user::sysadmins
 {
-realize( User["ladmin"] )
+realize( Group["sysadmins"],User["ladmin"] )
 }

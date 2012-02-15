@@ -17,4 +17,15 @@ class user::virtual
 		shell => "/bin/bash",
 	}
 	
+	@group { "sysadmins":
+		gid => "5002",
+		ensure => present,
+	}
+	
+	@group { "developers":
+		gid => "5001",
+		ensure => present,
+	}
+	
+	
 }

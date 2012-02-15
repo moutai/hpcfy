@@ -1,4 +1,6 @@
 class user::developers
 {
-realize( User["hpcuser"])
+
+	realize( Group["developers"],User["hpcuser"])
+	
 }
