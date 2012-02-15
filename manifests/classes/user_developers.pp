@@ -1,4 +1,4 @@
-class user::developers
+class user_developers
 {
 realize( User["hpcuser"])
 }

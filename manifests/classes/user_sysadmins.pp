@@ -1,4 +1,4 @@
-class user::sysadmins
+class user_sysadmins
 {
 realize( User["ladmin"] )
 }
