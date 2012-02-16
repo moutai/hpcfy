@@ -19,7 +19,7 @@ class virtual_users {
         home    => "/home/hpcuser",
         shell   => "/bin/bash",
         managehome => true,
-        password => '$1$5dZQgQSq$POqlSWnuiYZ7d1VXfgXGo.',
+        #password => '$1$5dZQgQSq$POqlSWnuiYZ7d1VXfgXGo.',
         require => [Group["hpcuser"], File["/home/hpcuser"]]
     }
     
