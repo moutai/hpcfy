@@ -7,6 +7,7 @@ node default {
 	include virtual_groups
 	include virtual_users
 	realize( Group["hpcuser"],User["hpcuser"])
+	include hpcsoft
 	#include user::virtual
 	#include user::sysadmins
 	#include user::developers
