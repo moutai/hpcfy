@@ -19,25 +19,25 @@ class virtual_users {
         home    => "/home/hpcuser",
         shell   => "/bin/bash",
         managehome => true,
-        #password => '$1$5dZQgQSq$POqlSWnuiYZ7d1VXfgXGo.',
+        password => '$1$5dZQgQSq$POqlSWnuiYZ7d1VXfgXGo.',
         require => [Group["hpcuser"], File["/home/hpcuser"]]
     }
     
-#    exec { "genkey":
-#        command => "su hpcuser -c 'ssh-keygen -t -P /'/' rsa -f ~/.ssh/id_rsa'",
-#        cwd => "/root",
-#        creates => "/home/hpcuser/.ssh/id_rsa",
-#        require => User["hpcuser"],
-#        #unless => "cat /home/hpcuser/.ssh/id_rsa",
-#    }
-#
-#    exec { "authkey":
-#        command => "cat ./id_rsa.pub >> ./authorized_keys",
-#        cwd => "/home/hpcuser/.ssh/",
-#        creates => "/home/hpcuser/.ssh/authorized_keys",
-#        require => Exec["genkey"],
-#        #unless => "cat /home/hpcuser/.ssh/authorized_keys",
-#    }
+    exec { "genkey":
+        command => "su hpcuser -c 'ssh-keygen -t -P /'/' rsa -f ~/.ssh/id_rsa'",
+        cwd => "/root",
+        creates => "/home/hpcuser/.ssh/id_rsa",
+        require => User["hpcuser"],
+        unless => "cat /home/hpcuser/.ssh/id_rsa",
+    }
+
+    exec { "authkey":
+        command => "cat ./id_rsa.pub >> ./authorized_keys",
+        cwd => "/home/hpcuser/.ssh/",
+        creates => "/home/hpcuser/.ssh/authorized_keys",
+        require => Exec["genkey"],
+        unless => "cat /home/hpcuser/.ssh/authorized_keys",
+    }
 
 	file {"/home/hpcuser":
         ensure => directory,
@@ -49,30 +49,32 @@ class virtual_users {
         require => File["/home/hpcuser"],
     }
 
-#    file {"/home/hpcuser/.ssh/id_rsa":
-#       #content => template("ssh_keys/keys/id_rsa"),
-#       #ensure => present,
-#       owner=> hpcuser,
-#       group => hpcuser,
-#       mode => 600,
-#       require => User["hpcuser"],
-#    }
-#
-#    file {"/home/hpcuser/.ssh/id_rsa.pub":
-#        #content => template("ssh_keys/keys/id_rsa.pub"),
-#        #ensure => present,
-#        owner=> hpcuser,
-#        group => hpcuser,
-#        mode => 600,            
-#        require => User["hpcuser"],
-#    }
-#
-#    file { "/home/hpcuser/.ssh/authorized_keys":
-#        mode => 600,
-#        owner => hpcuser,
-#        group => hpcuser,
-#        require => User["hpcuser"],
-#    }
+    file {"/home/hpcuser/.ssh/id_rsa":
+       #content => template("ssh_keys/keys/id_rsa"),
+       #ensure => present,
+       owner=> hpcuser,
+       group => hpcuser,
+       mode => 600,
+       require => [User["hpcuser"],Exec["genkey"],Exec["authkey"]],
+    }
+
+    file {"/home/hpcuser/.ssh/id_rsa.pub":
+        #content => template("ssh_keys/keys/id_rsa.pub"),
+        #ensure => present,
+        owner=> hpcuser,
+        group => hpcuser,
+        mode => 600,            
+        require => [User["hpcuser"],Exec["genkey"],Exec["authkey"]],
+        
+    }
+
+    file { "/home/hpcuser/.ssh/authorized_keys":
+        mode => 600,
+        owner => hpcuser,
+        group => hpcuser,
+        require => [User["hpcuser"],Exec["genkey"],Exec["authkey"]],
+        
+    }
 
 #    ssh_authorized_key {"hpcuser@clusternodeX":
 #        type => ssh-rsa,
