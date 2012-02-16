@@ -41,8 +41,6 @@ class virtual_users {
 
 	file {"/home/hpcuser":
         ensure => directory,
-        owner=> hpcuser,
-        group => hpcuser,
     }
 	
 	
