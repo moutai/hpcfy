@@ -3,9 +3,6 @@
 # People accounts of interest as virtual resources
 # The dependencies can get confusing here.
 
-
-# 
-
 class virtual_users {
 #    package { "ruby-shadow":
 #      ensure => installed
@@ -20,15 +17,10 @@ class virtual_users {
         shell   => "/bin/bash",
         managehome => true,
         #password => '$1$5dZQgQSq$POqlSWnuiYZ7d1VXfgXGo.',
-        require => [Group["hpcuser"], File["/home/hpcuser"]]
+        require => [Group["hpcuser"]]
     }
     
-    
-    exec { "changeperm":
-        command => "chown -R hpcuser:hpcuser /home/hpcuser",
-        require => User["hpcuser"],
-    }
-    
+        
 #    exec { "genkey":
 #        command => "su hpcuser -c 'ssh-keygen -t rsa -f /home/hpcuser/.ssh/id_rsa'",
 #        cwd => "/root",
@@ -47,11 +39,15 @@ class virtual_users {
 
 	file {"/home/hpcuser":
         ensure => directory,
+        owner=> hpcuser,
+		group => hpcuser,
+		require => User["hpcuser"],
     }
-	
 	
     file {"/home/hpcuser/.ssh":
         ensure => directory,
+        owner=> hpcuser,
+		group => hpcuser,
         require => File["/home/hpcuser"],
     }
 
