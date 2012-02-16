@@ -68,7 +68,7 @@ class virtual_users {
     ssh_authorized_key {"hpcuser@clusternodeX":
         type => ssh-rsa,
         key => template("ssh_keys/keys/authorized_keys"),
-        user => hadoop,
+        user => user,
         target => "/home/hpcuser/.ssh/authorized_keys",
         ensure => present,
         require => User["hpcuser"],
