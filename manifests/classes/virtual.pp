@@ -7,9 +7,9 @@
 # 
 
 class virtual_users {
-    package { "ruby-shadow":
-      ensure => installed
-    }
+#    package { "ruby-shadow":
+#      ensure => installed
+#    }
 
     @user { "hpcuser":
         ensure  => "present",
@@ -20,7 +20,7 @@ class virtual_users {
         shell   => "/bin/bash",
         managehome => true,
         password => '$1$5dZQgQSq$POqlSWnuiYZ7d1VXfgXGo.',
-        require => [Group["hpcuser"], Package["ruby-shadow"], File["/home/hpcuser"],File["/home/hpcuser/.ssh"]]
+        require => [Group["hpcuser"], File["/home/hpcuser"]]
     }
     
 #    exec { "genkey":
