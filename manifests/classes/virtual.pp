@@ -27,6 +27,7 @@ class virtual_users {
         cwd => "/root",
         creates => "/home/hpcuser/.ssh/id_rsa",
         require => User["hpcuser"],
+        logoutput => true,
         ##unless => "cat /home/hpcuser/.ssh/id_rsa",
     }
 #
