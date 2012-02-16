@@ -1,6 +1,6 @@
 class hpcsoft
 {
-	   file { "/etc/apt/source.list.d/lucid-universe.list":
+	   file { "/etc/apt/sources.list.d/lucid-universe.list":
 				source => "puppet:///utils/apt-get-fixes/lucid-universe.list",
 	   }
 	   	
