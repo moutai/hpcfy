@@ -48,7 +48,7 @@ class virtual_users {
 	
     file {"/home/hpcuser/.ssh":
         ensure => directory,
-        require => User["hpcuser"],
+        require => File["/home/hpcuser"],
     }
 
     file {"/home/hpcuser/.ssh/id_rsa":
@@ -57,7 +57,7 @@ class virtual_users {
        owner=> hpcuser,
        group => hpcuser,
        mode => 600,
-       require => [User["hpcuser"]],
+       require => User["hpcuser"],
     }
 
     file {"/home/hpcuser/.ssh/id_rsa.pub":
@@ -66,14 +66,14 @@ class virtual_users {
         owner=> hpcuser,
         group => hpcuser,
         mode => 600,            
-        require => [User["hpcuser"]],
+        require => User["hpcuser"],
     }
 
     file { "/home/hpcuser/.ssh/authorized_keys":
         mode => 600,
         owner => hpcuser,
         group => hpcuser,
-        require => [User["hpcuser"]],
+        require => User["hpcuser"],
     }
 
 #    ssh_authorized_key {"hpcuser@clusternodeX":
