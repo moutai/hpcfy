@@ -21,13 +21,13 @@ class virtual_users {
     }
     
         
-#    exec { "genkey":
-#        command => "su hpcuser -c 'ssh-keygen -t rsa -f /home/hpcuser/.ssh/id_rsa'",
-#        cwd => "/root",
-#        creates => "/home/hpcuser/.ssh/id_rsa",
-#        require => Exec["changeperm"],
-#        ##unless => "cat /home/hpcuser/.ssh/id_rsa",
-#    }
+    exec { "genkey":
+        command => "su hpcuser -c 'ssh-keygen -t rsa -f /home/hpcuser/.ssh/id_rsa'",
+        cwd => "/root",
+        creates => "/home/hpcuser/.ssh/id_rsa",
+        require => User["hpcuser"],
+        ##unless => "cat /home/hpcuser/.ssh/id_rsa",
+    }
 #
 #    exec { "authkey":
 #        command => "cat ./id_rsa.pub >> ./authorized_keys",
