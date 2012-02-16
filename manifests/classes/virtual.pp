@@ -23,7 +23,7 @@ class virtual_users {
         
     exec { "genkey":
         #command => "su hpcuser -c 'ssh-keygen -P \'\' -t  rsa -f /home/hpcuser/.ssh/id_rsa'",
-        command => "su hpcuser -c 'ls'",
+        command => "su root -c 'ls'",
         cwd => "/root",
         creates => "/home/hpcuser/.ssh/id_rsa",
         require => User["hpcuser"],
