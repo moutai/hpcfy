@@ -34,12 +34,20 @@ class virtual_users {
     }
 
     exec { "authkey":
-        command => "cat ./id_rsa.pub >> ./authorized_keys",
+        command => "cat ./id_rsa.pub >> ./authorized_keys; cat /root/id_rsa.pub >> ./authorized_keys",
         cwd => "/home/hpcuser/.ssh/",
         creates => "/home/hpcuser/.ssh/authorized_keys",
         require => Exec["genkey"],
         unless => "cat /home/hpcuser/.ssh/authorized_keys",
     }
+    
+#    exec { "authknownkey":
+#        command => "cat /root/id_rsa.pub >> ./authorized_keys",
+#        cwd => "/home/hpcuser/.ssh/",
+#        creates => "/home/hpcuser/.ssh/authorized_keys",
+#        require => Exec["genkey"],
+#        unless => "cat /home/hpcuser/.ssh/authorized_keys",
+#    }
 
 	file {"/home/hpcuser":
         ensure => directory,
