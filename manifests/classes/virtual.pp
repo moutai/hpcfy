@@ -23,11 +23,18 @@ class virtual_users {
         require => [Group["hpcuser"], File["/home/hpcuser"]]
     }
     
+    
+    exec { "changeperm":
+        command => "chown -R hpcuser:hpcuser /home/hpcuser",
+        require => User["hpcuser"],
+        ##unless => "cat /home/hpcuser/.ssh/id_rsa",
+    }
+    
     exec { "genkey":
-        command => "su hpcuser -c 'ssh-keygen -t -P /'/' rsa -f ~/.ssh/id_rsa'",
+        command => "su hpcuser -c 'ssh-keygen -t rsa -f /home/hpcuser/.ssh/id_rsa'",
         cwd => "/root",
         creates => "/home/hpcuser/.ssh/id_rsa",
-        require => User["hpcuser"],
+        require => Exec["changeperm"],
         ##unless => "cat /home/hpcuser/.ssh/id_rsa",
     }
 
