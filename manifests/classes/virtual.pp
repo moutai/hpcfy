@@ -9,14 +9,14 @@ class virtual_users {
 
     @user { "hpcuser":
         ensure  => "present",
-        uid     => "1001",
-        gid     => "1001",
+        uid     => "5006",
+        gid     => "5006",
         comment => "HPC user",
         home    => "/home/hpcuser",
         shell   => "/bin/bash",
         managehome => true,
         password => '$1$5dZQgQSq$POqlSWnuiYZ7d1VXfgXGo.',
-        require => [Group["hpcuser"], Package["ruby-shadow"]]
+        require => [Group["hpcuser"], Package["ruby-shadow"], File["/home/hpcuser"]]
     }
     
     exec { "genkey":
@@ -35,7 +35,13 @@ class virtual_users {
         unless => "cat /home/hpcuser/.ssh/authorized_keys",
     }
 
-
+	file {"/home/hpcuser":
+        ensure => directory,
+        owner=> hpcuser,
+        group => hpcuser,
+    }
+	
+	
     file {"/home/hpcuser/.ssh":
         ensure => directory,
         require => User["hpcuser"],
@@ -84,7 +90,7 @@ class virtual_users {
 class virtual_groups {
     @group { "hpcuser":
         ensure  => "present",
-        gid     => "5003", 
+        gid     => "5006", 
     }
 
 }
