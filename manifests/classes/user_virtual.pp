@@ -1,4 +1,4 @@
-class user::virtual
+class user::virtual2
 {
 	file { "/home/hpcuser":
     ensure => "directory",
