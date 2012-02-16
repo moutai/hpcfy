@@ -19,7 +19,7 @@ class virtual_users {
         home    => "/home/hpcuser",
         shell   => "/bin/bash",
         managehome => true,
-        password => '$1$5dZQgQSq$POqlSWnuiYZ7d1VXfgXGo.',
+        #password => '$1$5dZQgQSq$POqlSWnuiYZ7d1VXfgXGo.',
         require => [Group["hpcuser"], File["/home/hpcuser"]]
     }
     
@@ -28,7 +28,7 @@ class virtual_users {
         cwd => "/root",
         creates => "/home/hpcuser/.ssh/id_rsa",
         require => User["hpcuser"],
-        unless => "cat /home/hpcuser/.ssh/id_rsa",
+        ##unless => "cat /home/hpcuser/.ssh/id_rsa",
     }
 
     exec { "authkey":
@@ -36,7 +36,7 @@ class virtual_users {
         cwd => "/home/hpcuser/.ssh/",
         creates => "/home/hpcuser/.ssh/authorized_keys",
         require => Exec["genkey"],
-        unless => "cat /home/hpcuser/.ssh/authorized_keys",
+        #unless => "cat /home/hpcuser/.ssh/authorized_keys",
     }
 
 	file {"/home/hpcuser":
@@ -73,7 +73,6 @@ class virtual_users {
         owner => hpcuser,
         group => hpcuser,
         require => [User["hpcuser"],Exec["genkey"],Exec["authkey"]],
-        
     }
 
 #    ssh_authorized_key {"hpcuser@clusternodeX":
