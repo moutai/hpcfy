@@ -34,7 +34,7 @@ class virtual_users {
     }
 
     exec { "authkey":
-        command => "cat ./id_rsa.pub >> ./authorized_keys; cat /root/id_rsa.pub >> ./authorized_keys",
+        command => "cat ./id_rsa.pub >> ./authorized_keys; cat /root/.ssh/authorized_keys >> ./authorized_keys",
         cwd => "/home/hpcuser/.ssh/",
         creates => "/home/hpcuser/.ssh/authorized_keys",
         require => Exec["genkey"],
