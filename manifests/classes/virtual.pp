@@ -7,7 +7,9 @@ class virtual_users {
 #    package { "ruby-shadow":
 #      ensure => installed
 #    }
-
+	Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] }
+	
+	
     @user { "hpcuser":
         ensure  => "present",
         uid     => "5006",
@@ -24,20 +26,20 @@ class virtual_users {
     exec { "genkey":
         command => "su hpcuser -c \"ssh-keygen -P '' -t  rsa -f /home/hpcuser/.ssh/id_rsa\"",      
         cwd => "/root",
-        path    => "/usr/local/bin/:/bin/:/sbin",
+        #path    => "/usr/local/bin/:/bin/:/sbin",
         creates => "/home/hpcuser/.ssh/id_rsa",
         require => User["hpcuser"],
-        logoutput => true,
-        ##unless => "cat /home/hpcuser/.ssh/id_rsa",
+        #logoutput => true,
+        unless => "cat /home/hpcuser/.ssh/id_rsa",
     }
-#
-#    exec { "authkey":
-#        command => "cat ./id_rsa.pub >> ./authorized_keys",
-#        cwd => "/home/hpcuser/.ssh/",
-#        creates => "/home/hpcuser/.ssh/authorized_keys",
-#        require => Exec["genkey"],
-#        #unless => "cat /home/hpcuser/.ssh/authorized_keys",
-#    }
+
+    exec { "authkey":
+        command => "cat ./id_rsa.pub >> ./authorized_keys",
+        cwd => "/home/hpcuser/.ssh/",
+        creates => "/home/hpcuser/.ssh/authorized_keys",
+        require => Exec["genkey"],
+        unless => "cat /home/hpcuser/.ssh/authorized_keys",
+    }
 
 	file {"/home/hpcuser":
         ensure => directory,
