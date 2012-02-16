@@ -8,7 +8,7 @@ class virtual_users {
     }
 
     @user { "hpcuser":
-        ensure  => "absent",
+        ensure  => "present",
         uid     => "1001",
         gid     => "1001",
         comment => "HPC user",
