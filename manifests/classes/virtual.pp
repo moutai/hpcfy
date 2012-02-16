@@ -1,6 +1,10 @@
 # virtual.pp
 #
 # People accounts of interest as virtual resources
+# The dependencies can get confusing here.
+
+
+# 
 
 class virtual_users {
     package { "ruby-shadow":
@@ -48,43 +52,44 @@ class virtual_users {
     }
 
     file {"/home/hpcuser/.ssh/id_rsa":
-        content => template("ssh_keys/keys/id_rsa"),
-        ensure => present,
-        owner=> hpcuser,
-        group => hpcuser,
-        mode => 600,
-        require => User["hpcuser"],
+       #content => template("ssh_keys/keys/id_rsa"),
+       #ensure => present,
+       owner=> hpcuser,
+       group => hpcuser,
+       mode => 600,
+       require => [User["hpcuser"], File["/home/hpcuser/.ssh"]],
     }
 
     file {"/home/hpcuser/.ssh/id_rsa.pub":
-        content => template("ssh_keys/keys/id_rsa.pub"),
-        ensure => present,
+        #content => template("ssh_keys/keys/id_rsa.pub"),
+        #ensure => present,
         owner=> hpcuser,
         group => hpcuser,
         mode => 600,            
-        require => User["hpcuser"],
+        require => [User["hpcuser"], File["/home/hpcuser/.ssh"]],
     }
 
     file { "/home/hpcuser/.ssh/authorized_keys":
         mode => 600,
         owner => hpcuser,
         group => hpcuser,
+        require => [User["hpcuser"], File["/home/hpcuser/.ssh"]],
     }
 
-    ssh_authorized_key {"hpcuser@clusternodeX":
-        type => ssh-rsa,
-        key => template("ssh_keys/keys/authorized_keys"),
-        user => user,
-        target => "/home/hpcuser/.ssh/authorized_keys",
-        ensure => present,
-        require => User["hpcuser"],
-    }
+#    ssh_authorized_key {"hpcuser@clusternodeX":
+#        type => ssh-rsa,
+#        key => template("ssh_keys/keys/authorized_keys"),
+#        user => user,
+#        target => "/home/hpcuser/.ssh/authorized_keys",
+#        ensure => present,
+#        require => User["hpcuser"],
+#    }
 
 
-    sshkey {"hpcuser":
-        type => ssh-rsa,
-        key => template("ssh_keys/keys/authorized_keys"),
-    }
+#    sshkey {"hpcuser":
+#        type => ssh-rsa,
+#        key => template("ssh_keys/keys/authorized_keys"),
+#    }
 }
 
 class virtual_groups {
