@@ -16,6 +16,8 @@ class hpcsoft
 	   package { "gcc": ensure => installed }
 	   package { "g++": ensure => installed }
 	   package { "vim": ensure => installed }
+	   package { "wget": ensure => installed }
+	   
 	   
 	   package { "openmpi-bin":
 	   	ensure => installed,
