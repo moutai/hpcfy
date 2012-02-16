@@ -18,16 +18,16 @@ class hpcsoft
 	   
 	   package { "openmpi-bin":
 	   	ensure => installed,
-	   	require => [Package["gcc"],Package["g++"],File["/etc/apt/source.list.d/lucid-universe.list"],Exec["aptupdate"]],
+	   	require => [Package["gcc"],Package["g++"],File["/etc/apt/sources.list.d/lucid-universe.list"],Exec["aptupdate"]],
 	   }
 		
 	   package { "openmpi-doc":
 	   	ensure => installed,
-	   	require => [Package["gcc"],Package["g++"],File["/etc/apt/source.list.d/lucid-universe.list"],Exec["aptupdate"]],
+	   	require => [Package["gcc"],Package["g++"],File["/etc/apt/sources.list.d/lucid-universe.list"],Exec["aptupdate"]],
 	   }	    
 		
 	   package { "libopenmpi-dev":
 	   	ensure => installed,
-	   	require => [Package["gcc"],Package["g++"],File["/etc/apt/source.list.d/lucid-universe.list"],Exec["aptupdate"]],
+	   	require => [Package["gcc"],Package["g++"],File["/etc/apt/sources.list.d/lucid-universe.list"],Exec["aptupdate"]],
 	   }
 }
