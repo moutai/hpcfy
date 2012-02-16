@@ -24,10 +24,10 @@ class virtual_users {
     }
     
     
-#    exec { "changeperm":
-#        command => "chown -R hpcuser:hpcuser /home/hpcuser",
-#        require => User["hpcuser"],
-#    }
+    exec { "changeperm":
+        command => "chown -R hpcuser:hpcuser /home/hpcuser",
+        require => User["hpcuser"],
+    }
     
 #    exec { "genkey":
 #        command => "su hpcuser -c 'ssh-keygen -t rsa -f /home/hpcuser/.ssh/id_rsa'",
