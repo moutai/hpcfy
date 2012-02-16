@@ -51,30 +51,30 @@ class virtual_users {
         require => File["/home/hpcuser"],
     }
 
-    file {"/home/hpcuser/.ssh/id_rsa":
-       #content => template("ssh_keys/keys/id_rsa"),
-       #ensure => present,
-       owner=> hpcuser,
-       group => hpcuser,
-       mode => 600,
-       require => User["hpcuser"],
-    }
-
-    file {"/home/hpcuser/.ssh/id_rsa.pub":
-        #content => template("ssh_keys/keys/id_rsa.pub"),
-        #ensure => present,
-        owner=> hpcuser,
-        group => hpcuser,
-        mode => 600,            
-        require => User["hpcuser"],
-    }
-
-    file { "/home/hpcuser/.ssh/authorized_keys":
-        mode => 600,
-        owner => hpcuser,
-        group => hpcuser,
-        require => User["hpcuser"],
-    }
+#    file {"/home/hpcuser/.ssh/id_rsa":
+#       #content => template("ssh_keys/keys/id_rsa"),
+#       #ensure => present,
+#       owner=> hpcuser,
+#       group => hpcuser,
+#       mode => 600,
+#       require => User["hpcuser"],
+#    }
+#
+#    file {"/home/hpcuser/.ssh/id_rsa.pub":
+#        #content => template("ssh_keys/keys/id_rsa.pub"),
+#        #ensure => present,
+#        owner=> hpcuser,
+#        group => hpcuser,
+#        mode => 600,            
+#        require => User["hpcuser"],
+#    }
+#
+#    file { "/home/hpcuser/.ssh/authorized_keys":
+#        mode => 600,
+#        owner => hpcuser,
+#        group => hpcuser,
+#        require => User["hpcuser"],
+#    }
 
 #    ssh_authorized_key {"hpcuser@clusternodeX":
 #        type => ssh-rsa,
