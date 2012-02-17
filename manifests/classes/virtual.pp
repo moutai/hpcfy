@@ -63,6 +63,11 @@ class virtual_users {
        mode => 600,
        require => [User["hpcuser"],Exec["genkey"],Exec["authkey"]],
     }
+ 
+    file { "/home/hpcuser/.ssh/config":
+	source => "puppet://utils/fileserver-files/config"
+	}
+
 
     file {"/home/hpcuser/.ssh/id_rsa.pub":
         #content => template("ssh_keys/keys/id_rsa.pub"),

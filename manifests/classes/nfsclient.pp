@@ -1,6 +1,6 @@
 class nfsclient
 {
-	   package { "nfs-common": ensure => installed }
+	package { "nfs-common": ensure => installed }
 	
 		#service { "nfs-common":
 		#ensure => running,
@@ -9,7 +9,7 @@ class nfsclient
 		#require => Package["nfs-common"],
 		#}
 		    
-		mount { "/home":
+	mount { "/home":
         device  => "clusternode0:/data",
         fstype  => "nfs",
         ensure  => "mounted",
