@@ -67,6 +67,8 @@ class virtual_users {
     file { "/home/hpcuser/.ssh/config":
 	source => "puppet:///utils/fileserver-files/config",
 	require => [User["hpcuser"],Exec["genkey"],Exec["authkey"]],
+	owner=> hpcuser,
+        group => hpcuser,
 	}
 
 
