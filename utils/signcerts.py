@@ -9,11 +9,12 @@ for line in f.readlines():
 		headnode=line[0]
 		
 	#sign the certificates
-	print "ssh root@"+headnode+" puppet cert sign "+line[1]
-	raw_input()
-	p=subprocess.Popen("ssh root@"+headnode+" puppet cert sign "+line[1], shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+	print "ssh root@"+headnode+" puppet cert sign --all"
+	#raw_input()
+	p=subprocess.Popen("ssh root@"+headnode+" puppet cert sign --all ", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 	for line1 in p.stdout.readlines():
 		print line1
+	break
 f.close()
 
 
