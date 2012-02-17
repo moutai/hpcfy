@@ -1,6 +1,8 @@
 import os
 import subprocess
 import time
+import string
+
 
 def waitforinstances():
     while True:
@@ -20,15 +22,19 @@ def main():
     f = open('instances-info', 'r')
     
     emi=f.readline()
+    emi=string.rstrip(emi)
     print 'emi used:'+emi
-    
+
     num=f.readline()
+    num= string.rstrip(num)
     print 'number of instances: '+num
     
+    print "euca-run-instances -n "+num+" -t c1.xlarge " + emi    
     confirmation=raw_input ('Please confirm your action Y/N:')
     print confirmation
     
     if (confirmation=='Y'):
+	
         print "euca-run-instances -n "+num+" -t c1.xlarge " + emi    
         p=subprocess.Popen("euca-run-instances -n "+num+" -t c1.xlarge " + emi , shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         for line in p.stdout.readlines():

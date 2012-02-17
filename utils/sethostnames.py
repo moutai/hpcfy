@@ -1,6 +1,6 @@
 import os
 import subprocess
-
+print 'Setting the hostnames for the clusternodes'
 f = open('hosts', 'r')
 for line in f.readlines():
 	ip=line.strip().rstrip()
