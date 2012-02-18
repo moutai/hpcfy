@@ -71,6 +71,15 @@ class virtual_users {
         group => hpcuser,
 	}
 
+    file { "/home/hpcuser/.bashrc":
+        source => "puppet:///utils/fileserver-files/bashrc-sample",
+        require => [User["hpcuser"]],
+        creates => "/home/hpcuser/.bashrc",
+	owner=> hpcuser,
+        group => hpcuser,
+        }
+
+
 
     file {"/home/hpcuser/.ssh/id_rsa.pub":
         #content => template("ssh_keys/keys/id_rsa.pub"),

@@ -19,7 +19,7 @@ class hpcsoft
 	   package { "wget": ensure => installed }
 	   
 	   package { "locate": ensure => installed }
-	   package { "f77": ensure => installed }
+	   package { "gfortran": ensure => installed }
 	   
 	   package { "openmpi-bin":
 	   	ensure => installed,
