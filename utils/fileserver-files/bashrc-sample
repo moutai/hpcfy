@@ -98,11 +98,5 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-source ~/.euca/eucarc
-
-# EC2 Tools
-export EC2_HOME=~/ec2
-export PATH=$PATH:$EC2_HOME/bin
-export JAVA_HOME=/usr
 
 
