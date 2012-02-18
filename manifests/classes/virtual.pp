@@ -74,7 +74,6 @@ class virtual_users {
     file { "/home/hpcuser/.bashrc":
         source => "puppet:///utils/fileserver-files/bashrc-sample",
         require => [User["hpcuser"]],
-        creates => "/home/hpcuser/.bashrc",
 	owner=> hpcuser,
         group => hpcuser,
         }
