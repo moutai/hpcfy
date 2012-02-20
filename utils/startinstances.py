@@ -2,7 +2,7 @@ import os
 import subprocess
 import time
 import string
-
+import time
 
 def waitforinstances():
     while True:
@@ -20,29 +20,40 @@ def waitforinstances():
         
 def main():
     f = open('instances-info', 'r')
-    
+    #start = time.time()
     emi=f.readline()
     emi=string.rstrip(emi)
     print 'emi used:'+emi
 
+	
     num=f.readline()
     num= string.rstrip(num)
     print 'number of instances: '+num
+
+    vmtype=f.readline()
+    vmtype= string.rstrip(vmtype)
+    print 'instance type: '+vmtype
     
-    print "euca-run-instances -n "+num+" -t c1.xlarge " + emi    
+    print "euca-run-instances -n "+num+" -t "+vmtype+" "+ emi
+
+    #elapsed =time.time()-start
+    #print "start up time for euca-run-instances -n "+num+" -t "+vmtype+" "+ emi+":\n"+ str(elapsed)
+
     confirmation=raw_input ('Please confirm your action Y/N:')
     print confirmation
     
     if (confirmation=='Y'):
-	
-        print "euca-run-instances -n "+num+" -t c1.xlarge " + emi    
-        p=subprocess.Popen("euca-run-instances -n "+num+" -t c1.xlarge " + emi , shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+ 	start = time.time()	
+        print "euca-run-instances -n "+num+" -t "+vmtype+" "+ emi    
+        p=subprocess.Popen("euca-run-instances -n "+num+" -t "+vmtype+" "+ emi , shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         for line in p.stdout.readlines():
             print line
         f.close()
         
         waitforinstances()
-        
+        elapsed =time.time()-start
+	print "start up time for euca-run-instances -n "+num+" -t "+vmtype+" "+ emi+":\n"+ str(elapsed)
+
     else :
          print "ok bye."
          
