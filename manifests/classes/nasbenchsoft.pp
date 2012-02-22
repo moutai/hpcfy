@@ -16,6 +16,7 @@ class nasbenchsoft
         command => "/bin/cd /home/hpcuser; /bin/tar xzvf /home/hpcuser/NPB3.3.1.tar.gz; /bin/chmod -R hpcuser:hpcuser /home/hpcuser/NPB3.3.1;",  
         require => File["/home/hpcuser/NPB3.3.1.tar.gz"],
         creates => "/home/hpcuser/NPB3.3.1", 
+        logoutput => "on_failure",
 	   }	
     	
     	
