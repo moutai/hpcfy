@@ -1,4 +1,4 @@
-PUPPETMASTER = '10.80.160.13'
+PUPPETMASTER = '10.80.160.21'
 USER = 'root'
 SSH= 'ssh'
 
@@ -47,6 +47,8 @@ task :terminateallinstances do
 sh "euca-describe-instances|grep -e 'INSTANCE'|awk -F \" \" '\{print \$2\}'| while read line; do euca-terminate-instances \$line ; done"
 end
 
-
+task :terminatependinginstances do
+sh "euca-describe-instances|grep pending|grep -e 'INSTANCE'|awk -F \" \" '\{print \$2\}'| while read line; do euca-terminate-instances \$line ; done"
+end
 
 
