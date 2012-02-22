@@ -11,6 +11,10 @@ task :cleandeploy do
 sh "#{SSH} #{USER}@#{PUPPETMASTER} 'ssh -T -o StrictHostKeyChecking=no git@github.com;cd /etc/puppet; git init; git remote add origin git@github.com:moutai/Puppet-HPC-virtual-cluster-automation.git;git pull origin master;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster restart'"
 end
 
+task :cleandeploy-develop do
+sh "#{SSH} #{USER}@#{PUPPETMASTER} 'ssh -T -o StrictHostKeyChecking=no git@github.com;cd /etc/puppet; git clone git@github.com:moutai/Puppet-HPC-virtual-cluster-automation.git ./ ; git checkout -b develop origin/develop;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster restart'"
+end
+
 
 task :softdeploy do
 sh "#{SSH} #{USER}@#{PUPPETMASTER} 'cd /etc/puppet; git pull origin master'"
