@@ -13,8 +13,12 @@ class nasbenchsoft
 	   
 	   
 	   exec { "unpackNPB":
-        command => "su hpcuser tar xzf /home/hpcuserNPB3.3.1.tar.gz",  
-        refreshonly => true,    
+	   	cwd => "/home/hpcuser",
+        command => "su hpcuser tar xzf NPB3.3.1.tar.gz",  
+        require => File["/home/hpcuser/NPB3.3.1.tar.gz"],
+        creates => "NPB3.3.1", 
     	}	
+    	
+    		
     	
 }
