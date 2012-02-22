@@ -19,7 +19,7 @@ optional: install puppetmaster on master and puppet on puppet clients
 install git to the clusternode0, set up the git init and the remote git hub repo.
 	python installgit.py
 deploy initial config to clusternode0
-	rake cleandeploy-develop rake cleandeploy	or 
+	rake cleandeploy-develop or rake cleandeploy 
 copy puppet conf to all the nodes and restart services
 	python copypuppetconf.py
 sign the certificates of the nodes
