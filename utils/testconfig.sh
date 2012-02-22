@@ -1,8 +1,9 @@
 #!/bin/bash
 # Proper header for a Bash script.
+#<<<<<<ONLY USED FOR DEVELOPMENT>>>>
 #pwd;
 #git add ../.;
-
+#
 #git commit -a; 
 #git push; 
 
