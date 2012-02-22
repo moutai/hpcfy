@@ -5,7 +5,11 @@ f = open('hosts', 'r')
 
 versionkey=raw_input("Enter the deployment version: (M)aster(stable), (D)evelopement \n")
 
-if versionkey==M:
+print versionkey
+raw_input()
+
+
+if versionkey=='M':
 	for line in f.readlines():
 		ip=line.strip().rstrip()
 		line=line.split()
