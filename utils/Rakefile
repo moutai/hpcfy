@@ -8,8 +8,8 @@ sh "#{SSH} #{USER}@#{PUPPETMASTER} 'cd /etc/puppet; git pull origin master; chow
 end
 
 task :deploydevelop do
-sh "git checkout develop;git pull origin develop"
-sh "#{SSH} #{USER}@#{PUPPETMASTER} 'cd /etc/puppet; git checkout develop; git pull origin develop; chown -R puppet:puppet /etc/puppet'"
+sh "git checkout develop;git pull origin develop;git fetch"
+sh "#{SSH} #{USER}@#{PUPPETMASTER} 'cd /etc/puppet; git checkout develop; git pull origin develop; git fetch; chown -R puppet:puppet /etc/puppet'"
 end
 
 task :cleandeploy do
