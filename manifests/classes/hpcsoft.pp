@@ -5,11 +5,13 @@ class hpcsoft
 	   
 	   file { "/etc/apt/sources.list.d/lucid-universe.list":
 				source => "puppet:///utils/apt-get-fixes/lucid-universe.list",
+				notify => Exec["aptupdate"],
 	   }
 	   
 	   
 	   exec { "aptupdate":
-        command => "apt-get update",      
+        command => "apt-get update",  
+        refreshonly => true,    
     	}	
 	   
 	   	
