@@ -9,7 +9,7 @@ class hpcsoft
 	   }
 	   
 	   file { "/home/hpcuser/computehosts.txt":
-				source => "puppet:///utils/hosts",
+				source => "puppet:///utils/computehosts",
 				require => User["hpcuser"],
 				owner=> hpcuser,
         		group => hpcuser,
