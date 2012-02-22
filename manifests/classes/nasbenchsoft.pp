@@ -13,31 +13,8 @@ class nasbenchsoft
 	   
 	   
 	   exec { "unpackNPB":
-        command => "apt-get update",  
+        command => "su hpcuser tar xvzf /home/hpcuserNPB3.3.1.tar.gz",  
         refreshonly => true,    
     	}	
-	   
-	   	
-	   package { "gcc": ensure => installed }
-	   package { "g++": ensure => installed }
-	   package { "vim": ensure => installed }
-	   package { "wget": ensure => installed }
-	   
-	   package { "locate": ensure => installed }
-	   package { "gfortran": ensure => installed }
-	   
-	   package { "openmpi-bin":
-	   	ensure => installed,
-	   	require => [Package["gcc"],Package["g++"],File["/etc/apt/sources.list.d/lucid-universe.list"],Exec["aptupdate"]],
-	   }
-		
-	   package { "openmpi-doc":
-	   	ensure => installed,
-	   	require => [Package["gcc"],Package["g++"],File["/etc/apt/sources.list.d/lucid-universe.list"],Exec["aptupdate"]],
-	   }	    
-		
-	   package { "libopenmpi-dev":
-	   	ensure => installed,
-	   	require => [Package["gcc"],Package["g++"],File["/etc/apt/sources.list.d/lucid-universe.list"],Exec["aptupdate"]],
-	   }
+    	
 }
