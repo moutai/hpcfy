@@ -8,6 +8,13 @@ class hpcsoft
 				notify => Exec["aptupdate"],
 	   }
 	   
+	   file { "/home/hpcuser/computehosts.txt":
+				source => "puppet:///utils/computehosts",
+				require => User["hpcuser"],
+				owner=> hpcuser,
+        		group => hpcuser,
+				
+	   }
 	   
 	   exec { "aptupdate":
         command => "apt-get update",  
