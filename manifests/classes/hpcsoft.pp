@@ -29,7 +29,9 @@ class hpcsoft
 	   
 	   package { "locate": ensure => installed }
 	   package { "gfortran": ensure => installed }
-	   
+	   package { "htop": ensure => installed}
+	   package { "iptraf": ensure => installed}
+
 	   package { "openmpi-bin":
 	   	ensure => installed,
 	   	require => [Package["gcc"],Package["g++"],File["/etc/apt/sources.list.d/lucid-universe.list"],Exec["aptupdate"]],
