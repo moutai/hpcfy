@@ -14,7 +14,7 @@ sh "#{SSH} #{USER}@#{PUPPETMASTER} 'cd /etc/puppet; git checkout develop; git pu
 end
 
 task :cleandeploy do
-sh "#{SSH} #{USER}@#{PUPPETMASTER} 'ssh -T -o StrictHostKeyChecking=no git@github.com;cd /etc/puppet; git clone git@github.com:#{REPONAME} ./ ;git checkout -b develop origin/develop;git checkout master;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster restart'"
+sh "#{SSH} #{USER}@#{PUPPETMASTER} 'ssh -T -o StrictHostKeyChecking=no git@github.com;cd /etc/puppet; rm -r /etc/puppet/*; git clone git@github.com:#{REPONAME} ./ ;git checkout -b develop origin/develop;git checkout master;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster restart'"
 end
 
 task :cleandeploydevelop do
@@ -22,7 +22,7 @@ sh "#{SSH} #{USER}@#{PUPPETMASTER} 'ssh -T -o StrictHostKeyChecking=no git@githu
 end
 
 
-task :applydevelop => [:deploydevelop] do
+task :applydevelop do
 client = ENV['CLIENT']
 sh "#{SSH} #{USER}@#{client} 'puppet agent --test --verbose'" do |ok, status|
 puts case status.exitstatus
@@ -35,7 +35,7 @@ end
 end
 
 
-task :apply => [:deploy] do
+task :apply do
 client = ENV['CLIENT']
 sh "#{SSH} #{USER}@#{client} 'puppet agent --test --verbose'" do |ok, status|
 puts case status.exitstatus
