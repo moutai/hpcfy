@@ -17,9 +17,9 @@ class hpcsoft
 	   }
 	   
 	   exec { "aptupdate":
-        command => "apt-get update",  
-        refreshonly => true,    
-    	}	
+		command => "apt-get update",  
+		refreshonly => true,    
+    		}	
 	   
 	   	
 	   package { "gcc": ensure => installed }
