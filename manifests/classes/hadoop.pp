@@ -8,7 +8,7 @@ class hadoop
 
 
 	file { "/opt/hadoop-debs":
-		ensure => directory
+		ensure => directory,
 		notify => Exec["getHadoop"],
 	}
 
