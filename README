@@ -1,0 +1,59 @@
+Overview
+Author: Moussa Taifi
+
+
+This is a puppet project to create an mpi or hadoop-ready cluster out of virtual machines. The utilities are geared more specifically towards using an eucalyptus private cloud account. The puppet part of this project can be used for any virtual machine, be it private or public cloud. It provide basic capabilities for creating a shared nfs filesystem, user home directories, password-less key setup and basic HPC packages management (gcc, mpi,...).
+
+
+
+Getting Started
+Change to you utils directory and make sure that the euca2ools are working
+
+
+
+Step 1 Initialization
+
+start the instances
+	python startinstances.py
+wait for instances to start
+	wait......:)
+get the ips
+	python getips.py
+add the current public key to all the nodes
+	python addpubkeytonodes.py
+set the hostnames
+	python sethostnames.py
+send the hosts file
+	python sendhostsfile.py
+send the git key to the clusternode0
+	python copygitkey.py
+optional: install puppetmaster on master and puppet on puppet clients
+	python installpuppet.py
+install git to the clusternode0, set up the git init and the remote git hub repo.
+	python installgit.py
+deploy initial config to clusternode0
+	rake cleandeploydevelop or rake cleandeploy 
+copy puppet conf to all the nodes and restart services
+	python copypuppetconf.py
+sign the certificates of the nodes
+	python signcerts.py
+	
+	
+Step 2 update commit deploy
+
+deploy initial config to clusternode0
+	rake deploy or rake deploydevelop
+trigger apply to all nodes 
+	python triggerapplyall.py	
+	
+	
+	
+Step 3 creating the beowulf cluster
+
+add the necessary hpc software needed for the deployment under hpcfy / manifests / classes / hpcsoft.pp
+
+
+
+
+
+
