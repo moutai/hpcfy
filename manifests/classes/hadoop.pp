@@ -2,7 +2,7 @@ class hadoop
 {
 	Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] } 
 	
-	package { "sun-java6-jdk": ensure => installed }
+	package { "openjdk-7-jre": ensure => installed }
 		
 	   
 }
