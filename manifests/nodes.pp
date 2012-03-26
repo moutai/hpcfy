@@ -8,8 +8,8 @@ node default {
 	include virtual_users
 	realize( Group["hpcuser"],User["hpcuser"])
 	include hpcsoft
+
 	#include nasbenchsoft
-	
 	#include user::virtual
 	#include user::sysadmins
 	#include user::developers
