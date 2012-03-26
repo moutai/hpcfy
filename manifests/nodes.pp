@@ -8,7 +8,8 @@ node default {
 	include virtual_users
 	realize( Group["hpcuser"],User["hpcuser"])
 	include hpcsoft
-	include nasbenchsoft
+	#include nasbenchsoft
+	
 	#include user::virtual
 	#include user::sysadmins
 	#include user::developers
@@ -21,6 +22,8 @@ node "clusternode0" inherits default{
 	allowed => "10.80.160.0/24",
 	options => "rw,sync,no_root_squash",
 	} 
+
+	include hadoop
 	
 	
 }
