@@ -22,7 +22,6 @@ node "clusternode0" inherits default{
 	allowed => "10.80.160.0/24",
 	options => "rw,sync,no_root_squash",
 	} 
-
 	include hadoop
 	
 	

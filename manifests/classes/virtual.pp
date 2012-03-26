@@ -3,11 +3,12 @@
 # People accounts of interest as virtual resources
 # The dependencies can get confusing here.
 
-class virtual_users {
+class virtual_users_hpc {
 #    package { "ruby-shadow":
 #      ensure => installed
 #    }
-	Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] }
+
+    Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] }
 	
 	
     @user { "hpcuser":
@@ -20,8 +21,7 @@ class virtual_users {
         managehome => true,
         #password => '$1$5dZQgQSq$POqlSWnuiYZ7d1VXfgXGo.',
         require => [Group["hpcuser"]]
-    }
-    
+    }    
         
     exec { "genkey":
         command => "su hpcuser -c \"ssh-keygen -P '' -t  rsa -f /home/hpcuser/.ssh/id_rsa\"",      
@@ -33,6 +33,9 @@ class virtual_users {
         unless => "cat /home/hpcuser/.ssh/id_rsa",
     }
 
+
+
+
     exec { "authkey":
         command => "cat ./id_rsa.pub >> ./authorized_keys; cat /root/.ssh/authorized_keys2 >> ./authorized_keys",
         cwd => "/home/hpcuser/.ssh/",
@@ -41,7 +44,7 @@ class virtual_users {
         unless => "cat /home/hpcuser/.ssh/authorized_keys",
     }
     
-	file {"/home/hpcuser":
+    file {"/home/hpcuser":
         ensure => directory,
         owner=> hpcuser,
 		group => hpcuser,
@@ -120,4 +123,20 @@ class virtual_groups {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
