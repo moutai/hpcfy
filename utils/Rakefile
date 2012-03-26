@@ -1,4 +1,4 @@
-PUPPETMASTER = '10.80.160.21'
+PUPPETMASTER = '10.80.160.13'
 USER = 'root'
 SSH= 'ssh'
 
