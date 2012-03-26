@@ -3,7 +3,7 @@
 # People accounts of interest as virtual resources
 # The dependencies can get confusing here.
 
-class virtual_users_hpc {
+class virtual_users {
 #    package { "ruby-shadow":
 #      ensure => installed
 #    }
