@@ -7,7 +7,7 @@ This is a puppet project to create an mpi or hadoop-ready cluster out of virtual
 
 
 Getting Started
-Change to you utils directory and make sure that the euca2ools are working
+Change to the utils directory and make sure that the euca2ools are working
 
 
 
