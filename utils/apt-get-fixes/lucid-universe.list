@@ -1,2 +1,4 @@
 deb http://archive.ubuntu.com/ubuntu lucid main restricted universe multiverse
 
+deb http://archive.canonical.com/ lucid partner
+
