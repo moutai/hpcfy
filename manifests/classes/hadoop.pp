@@ -37,9 +37,16 @@ class hadoop
         			group => root,
 				require => Package["hadoop"],
 	}
+
+	file { "/etc/hadoop/mapred-site.xml":
+				source => "puppet:///utils/fileserver-files/hadoop_conf/mapred-site.xml",
+				owner=> root,
+        			group => root,
+				require => Package["hadoop"],
+	}
 	
 
-	file { "/hadoop_data/tmp":
+	file { ["/hadoop_data","/hadoop_data/tmp"]:
 		ensure => directory,
 		owner=> hpcuser,
         	group => hpcuser,
