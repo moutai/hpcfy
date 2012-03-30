@@ -14,7 +14,7 @@
 
 <property>
          <name>fs.default.name</name>
-         <value>hdfs://localhost:9000</value>
+         <value>hdfs://clusternode0:9000</value>
 </property>
 	
 </configuration>
