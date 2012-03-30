@@ -23,11 +23,13 @@ class hadoop
 		creates => "/opt/hadoop-debs/hadoop_1.0.1-1_amd64.deb",
 		logoutput => "on_failure",
 	}
-   	package { "hadoop":
+   	
+
+	package { "hadoop":
      		provider => dpkg,
     		ensure => installed,
     		source => "/opt/hadoop-debs/hadoop_1.0.1-1_amd64.deb",
-		requires => File["/opt/hadoop-debs/hadoop_1.0.1-1_amd64.deb"],
+		require => File["/opt/hadoop-debs/hadoop_1.0.1-1_amd64.deb"],
 	}
 
 # Config files
