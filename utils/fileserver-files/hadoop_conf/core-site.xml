@@ -13,7 +13,7 @@
 
 <property>
   <name>dfs.data.dir</name>
-  <value>/hadoop_data</value>
+  <value>/hadoop_data/data</value>
   <description>dfs folder</description>
 </property>
 
