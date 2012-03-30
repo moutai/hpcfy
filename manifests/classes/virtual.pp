@@ -20,7 +20,8 @@ class virtual_users {
         shell   => "/bin/bash",
         managehome => true,
         #password => '$1$5dZQgQSq$POqlSWnuiYZ7d1VXfgXGo.',
-        require => [Group["hpcuser"]]
+        require => [Group["hpcuser"]],
+	ingroups => ['hadoop'], 
     }    
         
     exec { "genkey":
