@@ -5,7 +5,7 @@
 <configuration>
      <property>
          <name>dfs.replication</name>
-         <value>1</value>
+         <value>2</value>
      </property>
 </configuration>
 
