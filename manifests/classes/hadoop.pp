@@ -7,6 +7,13 @@ class hadoop
 		ensure => directory,
 		notify => Exec["getHadoop"],
 	}
+
+	file{ "/opt/hadoop-debs/hadoop_1.0.1-1_amd64.deb"
+		ensure => "present",
+		require => Exec["getHadoop"],
+	}	
+
+
 # Currently using the deb to install hadoop 
 #http://mirror.cc.columbia.edu/pub/software/apache/hadoop/common/hadoop-1.0.1/hadoop_1.0.1-1_amd64.deb
 	exec { "getHadoop":
@@ -20,6 +27,7 @@ class hadoop
      		provider => dpkg,
     		ensure => installed,
     		source => "/opt/hadoop-debs/hadoop_1.0.1-1_amd64.deb"
+		requires => File["/opt/hadoop-debs/hadoop_1.0.1-1_amd64.deb"],
 	}
 
 # Config files
