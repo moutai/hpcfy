@@ -9,7 +9,7 @@ node default {
 	#User["hpcuser"]{groups=> ["hpcuser","hadoop"]}
 	realize( Group["hpcuser"],Group["hadoop"],User["hpcuser"])
 	include hpcsoft
-
+	include hadoop
 	#include nasbenchsoft
 	#include user::virtual
 	#include user::sysadmins
