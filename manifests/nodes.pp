@@ -6,8 +6,8 @@ node default {
 	include nfsclient
 	include virtual_groups
 	include virtual_users
-	#User["hpcuser"]{groups=> ["hpcuser","hadoop"]}
-	realize( Group["hpcuser"],User["hpcuser"])
+	User["hpcuser"]{groups=> ["hpcuser","hadoop"]}
+	realize( Group["hpcuser"],Group["hadoop"],User["hpcuser"])
 	include hpcsoft
 
 	#include nasbenchsoft

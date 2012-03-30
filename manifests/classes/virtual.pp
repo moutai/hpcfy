@@ -122,6 +122,13 @@ class virtual_groups {
         gid     => "5006", 
     }
 
+
+    @group { "hadoop":
+        ensure  => "present",
+        gid     => "5009",
+    }
+
+
 }
 
 
