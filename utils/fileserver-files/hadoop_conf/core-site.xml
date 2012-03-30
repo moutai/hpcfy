@@ -11,11 +11,7 @@
   <description>A base for other temporary directories.</description>
 </property>
 
-<property>
-  <name>dfs.data.dir</name>
-  <value>/hadoop_data/data</value>
-  <description>dfs folder</description>
-</property>
+
 
 
 <property>

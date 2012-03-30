@@ -7,6 +7,14 @@
          <name>dfs.replication</name>
          <value>2</value>
      </property>
+
+
+  <property>
+  	<name>dfs.data.dir</name>
+  	<value>/hadoop_data/data</value>
+  <description>dfs folder</description>
+
+</property>
 </configuration>
 
 
