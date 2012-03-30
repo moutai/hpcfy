@@ -21,7 +21,7 @@ class virtual_users {
         managehome => true,
         #password => '$1$5dZQgQSq$POqlSWnuiYZ7d1VXfgXGo.',
         require => [Group["hpcuser"]],
-	ingroups => ['hadoop'], 
+	groups =>["hadoop","hpcuser"]
     }    
         
     exec { "genkey":
