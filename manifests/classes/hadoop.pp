@@ -8,7 +8,7 @@ class hadoop
 		notify => Exec["getHadoop"],
 	}
 
-	file{ "/opt/hadoop-debs/hadoop_1.0.1-1_amd64.deb"
+	file{ "/opt/hadoop-debs/hadoop_1.0.1-1_amd64.deb":
 		ensure => "present",
 		require => Exec["getHadoop"],
 	}	
