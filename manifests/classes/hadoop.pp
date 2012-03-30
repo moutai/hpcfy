@@ -46,7 +46,7 @@ class hadoop
 	}
 	
 
-	file { ["/hadoop_data","/hadoop_data/tmp"]:
+	file { ["/hadoop_data","/hadoop_data/tmp","/var/log/hadoop","/var/run/hadoop"]:
 		ensure => directory,
 		owner=> hpcuser,
         	group => hpcuser,
