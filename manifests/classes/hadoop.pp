@@ -55,6 +55,13 @@ class hadoop
 				require => Package["hadoop"],
 	}
 	
+	file { "/etc/hadoop/slaves":
+				source => "puppet:///utils/computehosts",
+				owner=> root,
+        			group => root,
+				require => Package["hadoop"],
+	}
+	
 
 	file { ["/hadoop_data","/hadoop_data/tmp","/var/log/hadoop","/var/run/hadoop"]:
 		ensure => directory,
