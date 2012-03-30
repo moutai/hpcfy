@@ -26,7 +26,7 @@ class hadoop
    	package { "hadoop":
      		provider => dpkg,
     		ensure => installed,
-    		source => "/opt/hadoop-debs/hadoop_1.0.1-1_amd64.deb"
+    		source => "/opt/hadoop-debs/hadoop_1.0.1-1_amd64.deb",
 		requires => File["/opt/hadoop-debs/hadoop_1.0.1-1_amd64.deb"],
 	}
 
