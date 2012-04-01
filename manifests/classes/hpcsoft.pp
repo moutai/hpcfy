@@ -26,7 +26,7 @@ class hpcsoft
 	   package { "g++": ensure => installed }
 	   package { "vim": ensure => installed }
 	   package { "wget": ensure => installed }
-	   
+	   package { "rake" : ensure=> installed}
 	   package { "locate": ensure => installed }
 	   package { "gfortran": ensure => installed }
 	   package { "htop": ensure => installed}

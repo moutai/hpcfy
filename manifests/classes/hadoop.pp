@@ -54,6 +54,18 @@ class hadoop
         			group => root,
 				require => Package["hadoop"],
 	}
+
+
+	file { "/etc/hadoop/hdfs-site.xml":
+                                source => "puppet:///utils/fileserver-files/hadoop_conf/hdfs-site.xml",
+                                owner=> root,
+                                group => root,
+                                require => Package["hadoop"],
+        }
+
+
+
+
 	
 	file { "/etc/hadoop/slaves":
 				source => "puppet:///utils/computehosts",
@@ -61,6 +73,17 @@ class hadoop
         			group => root,
 				require => Package["hadoop"],
 	}
+	
+	file { "/etc/hadoop/masters":
+                                source => "puppet:///utils/fileserver-files/hadoop_conf/masters",
+                                owner=> root,
+                                group => root,
+                                require => Package["hadoop"],
+        }
+
+
+
+
 	
 
 	file { ["/hadoop_data","/hadoop_data/data","/hadoop_data/tmp","/var/log/hadoop","/var/run/hadoop"]:
