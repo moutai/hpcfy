@@ -1,3 +1,6 @@
+#! /usr/bin/env python
+
+
 import os
 import subprocess
 
@@ -16,6 +19,12 @@ if versionkey=='M':
 	        	print line1
 else:
 	print 'Applying the development version of the repository'
+	
+	print "rake deploydevelop"
+	p=subprocess.Popen("rake deploydevelop", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)	
+	for line1 in p.stdout.readlines():
+		       	print line1	
+
 	for line in f.readlines(): 
 		ip=line.strip().rstrip()
 		line=line.split()

@@ -17,19 +17,21 @@ class hpcsoft
 	   }
 	   
 	   exec { "aptupdate":
-        command => "apt-get update",  
-        refreshonly => true,    
-    	}	
+		command => "apt-get update",  
+		refreshonly => true,    
+    		}	
 	   
 	   	
 	   package { "gcc": ensure => installed }
 	   package { "g++": ensure => installed }
 	   package { "vim": ensure => installed }
 	   package { "wget": ensure => installed }
-	   
+	   package { "rake" : ensure=> installed}
 	   package { "locate": ensure => installed }
 	   package { "gfortran": ensure => installed }
-	   
+	   package { "htop": ensure => installed}
+	   package { "iptraf": ensure => installed}
+
 	   package { "openmpi-bin":
 	   	ensure => installed,
 	   	require => [Package["gcc"],Package["g++"],File["/etc/apt/sources.list.d/lucid-universe.list"],Exec["aptupdate"]],

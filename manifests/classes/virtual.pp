@@ -7,7 +7,8 @@ class virtual_users {
 #    package { "ruby-shadow":
 #      ensure => installed
 #    }
-	Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] }
+
+    Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] }
 	
 	
     @user { "hpcuser":
@@ -19,9 +20,9 @@ class virtual_users {
         shell   => "/bin/bash",
         managehome => true,
         #password => '$1$5dZQgQSq$POqlSWnuiYZ7d1VXfgXGo.',
-        require => [Group["hpcuser"]]
-    }
-    
+        require => [Group["hpcuser"]],
+	groups =>["hadoop","hpcuser"]
+    }    
         
     exec { "genkey":
         command => "su hpcuser -c \"ssh-keygen -P '' -t  rsa -f /home/hpcuser/.ssh/id_rsa\"",      
@@ -33,6 +34,9 @@ class virtual_users {
         unless => "cat /home/hpcuser/.ssh/id_rsa",
     }
 
+
+
+
     exec { "authkey":
         command => "cat ./id_rsa.pub >> ./authorized_keys; cat /root/.ssh/authorized_keys2 >> ./authorized_keys",
         cwd => "/home/hpcuser/.ssh/",
@@ -41,7 +45,7 @@ class virtual_users {
         unless => "cat /home/hpcuser/.ssh/authorized_keys",
     }
     
-	file {"/home/hpcuser":
+    file {"/home/hpcuser":
         ensure => directory,
         owner=> hpcuser,
 		group => hpcuser,
@@ -119,5 +123,28 @@ class virtual_groups {
         gid     => "5006", 
     }
 
+
+    @group { "hadoop":
+        ensure  => "present",
+        gid     => "5009",
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

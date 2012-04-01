@@ -7,17 +7,17 @@ class nasbenchsoft
 				notify => Exec["unpackNPB"],
 				require => User["hpcuser"],
 				owner=> hpcuser,
-        		group => hpcuser,
+        			group => hpcuser,
 	   }
 	   
 	   
 	   exec { "unpackNPB":
 	   	provider => shell,
 	   	cwd =>"/home/hpcuser",
-        command => "su hpcuser -c 'tar xzvf NPB3.3.1.tar.gz'",  
-        require => File["/home/hpcuser/NPB3.3.1.tar.gz"],
-        creates => "/home/hpcuser/NPB3.3.1", 
-        logoutput => "on_failure",
+		command => "su hpcuser -c 'tar xzvf NPB3.3.1.tar.gz'",  
+		require => File["/home/hpcuser/NPB3.3.1.tar.gz"],
+		creates => "/home/hpcuser/NPB3.3.1", 
+		logoutput => "on_failure",
 	   }	
     	
     	

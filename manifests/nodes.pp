@@ -6,9 +6,11 @@ node default {
 	include nfsclient
 	include virtual_groups
 	include virtual_users
-	realize( Group["hpcuser"],User["hpcuser"])
+	#User["hpcuser"]{groups=> ["hpcuser","hadoop"]}
+	realize( Group["hpcuser"],Group["hadoop"],User["hpcuser"])
 	include hpcsoft
-	include nasbenchsoft
+	include hadoop
+	#include nasbenchsoft
 	#include user::virtual
 	#include user::sysadmins
 	#include user::developers
@@ -21,6 +23,7 @@ node "clusternode0" inherits default{
 	allowed => "10.80.160.0/24",
 	options => "rw,sync,no_root_squash",
 	} 
+	include hadoop
 	
 	
 }
