@@ -1,6 +1,7 @@
 PUPPETMASTER = '10.80.160.13'
 USER = 'root'
 SSH= 'ssh'
+SSHNOCHECK= ' ssh -o StrictHostKeyChecking=no '
 
 GITHUBREPONAME= 'git@github.com:moutai/hpcfy.git'
 LOCALREPONAME= 'mtaifi@10.80.160.1:~/hpcfy'
@@ -29,7 +30,7 @@ end
 
 task :applydevelop do
 client = ENV['CLIENT']
-sh "#{SSH} #{USER}@#{client} 'puppet agent --test --verbose'" do |ok, status|
+sh "#{SSHNOCHECK} #{USER}@#{client} ' puppet agent --test --verbose'" do |ok, status|
 puts case status.exitstatus
 when 0 then "Client is up to date."
 when 1 then "Puppet couldn't compile the manifest."

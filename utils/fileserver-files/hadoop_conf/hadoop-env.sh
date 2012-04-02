@@ -11,7 +11,7 @@ export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
 
 
 export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-"/etc/hadoop"}
-
+#export HADOOP_HOME=/usr/share/hadoop
 # The maximum amount of heap to use, in MB. Default is 1000.
 #export HADOOP_HEAPSIZE=
 #export HADOOP_NAMENODE_INIT_HEAPSIZE=""
