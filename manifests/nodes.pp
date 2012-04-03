@@ -10,6 +10,8 @@ node default {
 	realize( Group["hpcuser"],Group["hadoop"],User["hpcuser"])
 	include hpcsoft
 	include hadoop
+	include ganglia-client
+	
 	#include nasbenchsoft
 	#include user::virtual
 	#include user::sysadmins
@@ -24,6 +26,7 @@ node "clusternode0" inherits default{
 	options => "rw,sync,no_root_squash",
 	} 
 	include hadoop
-	
+	include ganglia-client
+	include ganglia-server	
 	
 }
