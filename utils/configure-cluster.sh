@@ -1,0 +1,10 @@
+python getips.py;
+python addpubkeytonodes.py;
+python sethostnames.py;
+python sendhostsfile.py;
+python copygitkey.py;
+python installpuppet.py;
+python installgit.py;
+rake cleandeploy; 
+python copypuppetconf.py;
+python signcerts.py;
