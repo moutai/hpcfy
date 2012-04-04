@@ -27,7 +27,7 @@ send the hosts file
 	python sendhostsfile.py
 send the git key to the clusternode0
 	python copygitkey.py
-optional: install puppetmaster on master and puppet on puppet clients
+install puppetmaster on master and puppet on puppet clients
 	python installpuppet.py
 install git to the clusternode0, set up the git init and the remote git hub repo.
 	python installgit.py
