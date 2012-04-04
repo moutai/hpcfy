@@ -42,7 +42,7 @@ sign the certificates of the nodes
 Step 2 update commit deploy
 
 deploy initial config to clusternode0
-	rake deploy or rake deploydevelop
+	rake deploydevelop or rake deploy
 trigger apply to all nodes 
 	python triggerapplyall.py	
 	
