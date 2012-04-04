@@ -39,16 +39,16 @@ class ganglia-server
                                 owner=> root,
                                 group => root,
                                 require => Package["ganglia-webfrontend"],
-				notify  => Service["gmetad","ganglia-monitor"],
+				notify  => Service["gmetad"],
         }
 
-	file { "/etc/apache2/apache2.conf":
-                                source => "puppet:///utils/fileserver-files/ganglia_conf/apache2.conf",
-                                owner=> root,
-                                group => root,
-                                #require => Package["ganglia-webfrontend"],
-				notify => Service["apache2"],
-        }
+#	file { "/etc/apache2/apache2.conf":
+#                                source => "puppet:///utils/fileserver-files/ganglia_conf/apache2.conf",
+#                                owner=> root,
+#                                group => root,
+#                                #require => Package["ganglia-webfrontend"],
+#				notify => Service["apache2"],
+#        }
 
 	file { "/usr/share/ganglia-webfrontend/conf.php":
                                 source => "puppet:///utils/fileserver-files/ganglia_conf/conf.php",
@@ -63,8 +63,9 @@ class ganglia-server
 	file {'/etc/apache2/sites-enabled/gangliaapache.conf':
    			 ensure  => link,
 			 target  => '/etc/ganglia-webfrontend/apache.conf',
-			 require => Package['ganglia-webfrontend'];
- 	}
+			 require => Package['ganglia-webfrontend'],
+ 			 notify => Service["apache2"],
+	}
 
 	service { "gmetad":
         ensure => running,
@@ -77,7 +78,6 @@ class ganglia-server
         ensure => running,
         enable => true,
         hasrestart => true,
-        #require => Package["ganglia-webfrontend"],
         }
 
 
