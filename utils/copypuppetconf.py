@@ -6,11 +6,15 @@ f = open('hosts', 'r')
 for line in f.readlines():
 	ip=line.strip().rstrip()
 	line=line.split()
-	print "scp ../puppet.conf root@"+line[0]+":/etc/puppet/"	
-	p=subprocess.Popen("scp ../puppet.conf root@"+line[0]+":/etc/puppet/", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+	print "scp computehosts root@"+line[0]+":/etc/puppet/utils"	
+	p=subprocess.Popen("scp computehosts root@"+line[0]+":/etc/puppet/utils", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 	for line1 in p.stdout.readlines():
 		print line1
 
+	print "scp ../puppet.conf root@"+line[0]+":/etc/puppet/"
+        p=subprocess.Popen("scp ../puppet.conf root@"+line[0]+":/etc/puppet/", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        for line1 in p.stdout.readlines():
+                print line1	
 
 	if (line[1]=='clusternode0'):	
 		print "service puppetmaster restart"	

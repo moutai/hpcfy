@@ -14,7 +14,7 @@ send the hosts file
 	python sendhostsfile.py
 send the git key to the clusternode0
 	python copygitkey.py
-optional: install puppetmaster on master and puppet on puppet clients
+install puppetmaster on master and puppet on puppet clients
 	python installpuppet.py
 install git to the clusternode0, set up the git init and the remote git hub repo.
 	python installgit.py
@@ -29,7 +29,7 @@ sign the certificates of the nodes
 Step 2 update commit deploy
 
 deploy initial config to clusternode0
-	rake deploy or rake deploydevelop
+	rake deploydevelop or rake deploy
 trigger apply to all nodes 
 	python triggerapplyall.py	
 	
