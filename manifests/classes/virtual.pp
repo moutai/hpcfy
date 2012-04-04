@@ -70,14 +70,14 @@ class virtual_users {
  
     file { "/home/hpcuser/.ssh/config":
 	source => "puppet:///utils/fileserver-files/config",
-	require => [User["hpcuser"],Exec["genkey"],Exec["authkey"]],
+	require => [User["hpcuser"],Exec["genkey"],Exec["authkey"],File["/home/hpcuser/.ssh"]],
 	owner=> hpcuser,
         group => hpcuser,
 	}
 
     file { "/home/hpcuser/.bashrc":
         source => "puppet:///utils/fileserver-files/bashrc-sample",
-        require => [User["hpcuser"]],
+        require => [User["hpcuser"],File["/home/hpcuser"]],
 	owner=> hpcuser,
         group => hpcuser,
         }
