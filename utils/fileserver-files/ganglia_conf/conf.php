@@ -1,4 +1,6 @@
 <?php
+
+
 # $Id: conf.php.in 1831 2008-09-26 12:18:54Z carenas $
 #
 # Gmetad-webfrontend version. Used to check for updates.

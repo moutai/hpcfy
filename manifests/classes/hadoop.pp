@@ -82,7 +82,29 @@ class hadoop
         }
 
 
+	#file { "/etc/security/limits.conf":
+        #                        source => "puppet:///utils/fileserver-files/hadoop_conf/tunings/limits.conf",
+        #                        owner=> root,
+        #                        group => root,
+        #                        require => Package["hadoop"],
+        #}
 
+
+
+	#file { "/etc/pam.d/common-session":
+        #                        source => "puppet:///utils/fileserver-files/hadoop_conf/tunings/common-session",
+        #                        owner=> root,
+        #                        group => root,
+        #                        require => Package["hadoop"],
+        #}
+	
+	
+	file { "/etc/profile":
+                source => "puppet:///utils/fileserver-files/profile",
+                owner=> root,
+                group => root,
+                require => Package["hadoop"],
+        }
 
 	
 
@@ -93,7 +115,7 @@ class hadoop
 		require => Package["hadoop"],
 	}
 	
-	#file { "/hadoop_data/tmp":
+#	#file { "/hadoop_data/tmp":
 	#	ensure => directory,
 	#}
 
