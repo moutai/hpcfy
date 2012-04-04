@@ -57,6 +57,15 @@ class ganglia-server
                                 #require => Package["ganglia-webfrontend"],
                                 #notify => Service["apache2"],
         }
+
+
+
+	file {'/etc/apache2/sites-enabled/gangliaapache.conf':
+   			 ensure  => link,
+			 target  => '/etc/ganglia-webfrontend/apache.conf',
+			 require => Package['ganglia-webfrontend'];
+ 	}
+
 	service { "gmetad":
         ensure => running,
         enable => true,
