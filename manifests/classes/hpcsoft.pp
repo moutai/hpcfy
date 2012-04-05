@@ -23,6 +23,7 @@ class hpcsoft
 	   
 	   	
 	   package { "gcc": ensure => installed }
+	   package { "lsof": ensure => installed }
 	   package { "g++": ensure => installed }
 	   package { "vim": ensure => installed }
 	   package { "wget": ensure => installed }
