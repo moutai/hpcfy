@@ -12,9 +12,15 @@
   <property>
   	<name>dfs.data.dir</name>
   	<value>/hadoop_data/data</value>
-  <description>dfs folder</description>
+        <description>dfs data folder</description>
+  </property>
 
-</property>
+  <property>
+        <name>dfs.name.dir</name>
+        <value>/hadoop_data/name</value>
+        <description>dfs namenode folder</description>
+  </property>  
+
 </configuration>
 
 

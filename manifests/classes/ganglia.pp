@@ -1,6 +1,7 @@
 class ganglia-client
 {
 	Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] } 	
+
 	package { "ganglia-monitor": ensure => installed }
 #config files
 #/etc/puppet/utils/fileserver-files/ganglia_conf/
@@ -12,8 +13,7 @@ class ganglia-client
 				owner=> root,
         			group => root,
 				require => Package["ganglia-monitor"],
-				notify  => Service["ganglia-monitor"],
-				
+				notify  => Service["ganglia-monitor"],				
 	}
 
 

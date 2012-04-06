@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -99,4 +106,4 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 
-
+export PATH=$PATH:/usr/lib/hadoop-0.20/bin

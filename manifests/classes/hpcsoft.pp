@@ -4,10 +4,11 @@ class hpcsoft
 	   
 	   
 	   file { "/etc/apt/sources.list.d/lucid-universe.list":
-				source => "puppet:///utils/apt-get-fixes/lucid-universe.list",
-				notify => Exec["aptupdate"],
-	   }
-	   
+                                source => "puppet:///utils/apt-get-fixes/lucid-universe.list",
+                                notify => Exec["aptupdate"],
+           }
+
+ 
 	   file { "/home/hpcuser/computehosts.txt":
 				source => "puppet:///utils/computehosts",
 				require => User["hpcuser"],
