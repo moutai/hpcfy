@@ -26,6 +26,6 @@ session	required			pam_permit.so
 session	required	pam_unix.so 
 session	optional			pam_ck_connector.so nox11
 
-#session required pam_limits.so
+session required pam_limits.so
 
 # end of pam-auth-update config

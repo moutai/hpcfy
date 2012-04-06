@@ -66,43 +66,53 @@ class hadoop
 
 
 
-	file { "/hadoop_data":
+	file { ["/hadoop_data","/var/log/hadoop","/var/log/hadoop/hpcuser","/var/run/hadoop"]:
 		ensure => directory,
-		owner=> root,
-        	group => root,
+		owner=> hpcuser,
+        	group => hpcuser,
 		require => Package["hadoop"],
 	}
 
 	file { "/hadoop_data/name":
                 ensure => directory,
-                owner=> hdfs,
-                group => hadoop,
+                owner=> hpcuser,
+                group => hpcuser,
                 require => Package["hadoop"],
         }
 	
 	file { "/hadoop_data/data":
                 ensure => directory,
-                owner=> hdfs,
-                group => hadoop,
+                owner=> hpcuser,
+                group => hpcuser,
                 require => Package["hadoop"],
         }
 
 	file { "/hadoop_data/mapred":
                 ensure => directory,
-                owner=> mapred,
-                group => hadoop,
+                owner=> hpcuser,
+                group => hpcuser,
                 require => Package["hadoop"],
+    	}		 
+
+
+
+	file { "/etc/security/limits.conf":
+                                source => "puppet:///utils/fileserver-files/hadoop_conf/tunings/limits.conf",
+                                owner=> root,
+                                group => root,
+                                require => Package["hadoop"],
         }
 
 
 
+	file { "/etc/pam.d/common-session":
+                                source => "puppet:///utils/fileserver-files/hadoop_conf/tunings/common-session",
+                                owner=> root,
+                                group => root,
+                                require => Package["hadoop"],
+        }
 
-
-
-
-	
-	
-			  
+ 
 }
 
 
