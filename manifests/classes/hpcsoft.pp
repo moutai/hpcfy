@@ -4,10 +4,11 @@ class hpcsoft
 	   
 	   
 	   file { "/etc/apt/sources.list.d/lucid-universe.list":
-				source => "puppet:///utils/apt-get-fixes/lucid-universe.list",
-				notify => Exec["aptupdate"],
-	   }
-	   
+                                source => "puppet:///utils/apt-get-fixes/lucid-universe.list",
+                                notify => Exec["aptupdate"],
+           }
+
+ 
 	   file { "/home/hpcuser/computehosts.txt":
 				source => "puppet:///utils/computehosts",
 				require => User["hpcuser"],
@@ -23,6 +24,7 @@ class hpcsoft
 	   
 	   	
 	   package { "gcc": ensure => installed }
+	   package { "lsof": ensure => installed }
 	   package { "g++": ensure => installed }
 	   package { "vim": ensure => installed }
 	   package { "wget": ensure => installed }

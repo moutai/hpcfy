@@ -82,7 +82,12 @@ class virtual_users {
         group => hpcuser,
         }
 
-
+    ###quick workaround for root folder  
+    file { "/root/.bashrc":
+        source => "puppet:///utils/fileserver-files/bashrc-sample",
+        owner=> root,
+        group => root,
+        }
 
     file {"/home/hpcuser/.ssh/id_rsa.pub":
         #content => template("ssh_keys/keys/id_rsa.pub"),

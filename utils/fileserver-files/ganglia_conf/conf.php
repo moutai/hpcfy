@@ -1,4 +1,6 @@
 <?php
+
+
 # $Id: conf.php.in 1831 2008-09-26 12:18:54Z carenas $
 #
 # Gmetad-webfrontend version. Used to check for updates.
@@ -34,7 +36,7 @@ $graphdir='./graph.d';
 # databases need to be local to be read. 
 #
 $ganglia_ip = "127.0.0.1";
-$ganglia_port = 8649;
+$ganglia_port = 8652;
 
 #
 # The maximum number of dynamic graphs to display.  If you set this

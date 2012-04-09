@@ -1,0 +1,12 @@
+Starting Hadoop tasktracker daemon: starting tasktracker, logging to /var/log/hadoop/root/hadoop-hadoop-tasktracker-clusternode0.out
+log4j:ERROR setFile(null,true) call failed.
+java.io.FileNotFoundException: /var/log/hadoop/root/hadoop-hadoop-tasktracker-clusternode0.log (Permission denied)
+	at java.io.FileOutputStream.openAppend(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:207)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:131)
+	at org.apache.log4j.FileAppender.setFile(FileAppender.java:290)
+	at org.apache.log4j.FileAppender.activateOptions(FileAppender.java:164)
+	at org.apache.log4j.DailyRollingFileAppender.activateOptions(DailyRollingFileAppender.java:216)
+	at org.apache.log4j.config.PropertySetter.activate(PropertySetter.java:257)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:133)
+ERROR. Could not start Hadoop tasktracker daemon

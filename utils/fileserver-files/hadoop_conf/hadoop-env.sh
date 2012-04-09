@@ -7,7 +7,7 @@
 
 # The java implementation to use.
 #export JAVA_HOME=/usr/lib/jvm/java-6-sun
-export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-7-oracle
 
 
 export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-"/etc/hadoop"}
@@ -46,3 +46,8 @@ export HADOOP_SECURE_DN_PID_DIR=/var/run/hadoop
 
 # A string representing this instance of hadoop. $USER by default.
 export HADOOP_IDENT_STRING=$USER
+#export HADOOP_NAMENODE_USER="hdfs"
+#export HADOOP_DATANODE_USER=$HADOOP_NAMENODE_USER
+#export HADOOP_SECONDARYNAMENODE_USER=$HADOOP_NAMENODE_USER
+
+
