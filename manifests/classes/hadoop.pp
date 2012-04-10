@@ -44,6 +44,11 @@ class hadoop
                require => [Exec["installsunjava"],File["/etc/apt/sources.list.d/cloudera.list"]]
         }
 
+	package { "mahout":
+               ensure => installed,
+               require => Package["hadoop"],
+        }
+
 	package {["hadoop-0.20-namenode","hadoop-0.20-datanode","hadoop-0.20-secondarynamenode","hadoop-0.20-jobtracker","hadoop-0.20-tasktracker"]:
                ensure => installed,
                require => [Exec["installsunjava"],File["/etc/apt/sources.list.d/cloudera.list"]]
