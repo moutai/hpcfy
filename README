@@ -55,5 +55,38 @@ add the necessary hpc software needed for the deployment under hpcfy / manifests
 
 
 
+Hadoop/Mahout considerations
+
+To start a local hadoop cluster this is the steps to follow:
+
+cd hpcfy/utils
+sh logintomaster.sh
+su hpcuser
+hadoop namenode -format
+start-all.sh
+
+This should start a hadoop cluster composed of all your nodes. 
+
+For running Mahout, the current Mahout version from the cloudera distribution is available and is accessible using 
+
+mahout jar yourjar name-of-run
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
