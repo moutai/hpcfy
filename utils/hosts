@@ -1,5 +1,4 @@
-10.80.160.13 clusternode0
-10.80.160.14 clusternode1
-10.80.160.15 clusternode2
-10.80.160.16 clusternode3
-10.80.160.17 clusternode4
+ec2-23-22-49-54.compute-1.amazonaws.com clusternode0
+ec2-23-21-3-0.compute-1.amazonaws.com clusternode1
+ec2-23-21-23-212.compute-1.amazonaws.com clusternode2
+ec2-184-73-17-55.compute-1.amazonaws.com clusternode3

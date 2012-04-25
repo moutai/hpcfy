@@ -1,12 +1,10 @@
-PUPPETMASTER = 'ec2-23-22-49-54.compute-1.amazonaws.com'
+PUPPETMASTER = '10.80.160.13'
 USER = 'root'
 SSH= 'ssh '
 SSHNOCHECK= ' ssh -o StrictHostKeyChecking=no '
-PERMFILE = '~/.hpcfy/robotkeypair.pem'
-
 
 GITHUBREPONAME= 'git@github.com:moutai/hpcfy.git'
-LOCALREPONAME= 'mtaifi@tec.hpc.temple.edu:~/hpcfy.git'
+LOCALREPONAME= 'mtaifi@10.80.160.1:~/hpcfy'
 
 
 REPONAME = GITHUBREPONAME
@@ -29,9 +27,6 @@ task :cleandeploydevelop do
 sh "#{SSH} #{USER}@#{PUPPETMASTER} 'ssh -T -o StrictHostKeyChecking=no git@github.com;cd /etc/puppet; rm -r /etc/puppet/*; git clone #{REPONAME} ./ ; git checkout -b develop origin/develop;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster restart'"
 end
 
-task :cleandeploydevelopaws do
-sh "#{SSH}' -i ' #{PERFILE} ' '#{USER}@#{PUPPETMASTER} 'ssh -T -o StrictHostKeyChecking=no git@github.com;cd /etc/puppet; rm -r /etc/puppet/*; git clone #{REPONAME} ./ ; git checkout -b developaws origin/developaws;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster restart'"
-end
 
 task :applydevelop do
 client = ENV['CLIENT']

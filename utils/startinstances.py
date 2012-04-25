@@ -4,9 +4,9 @@ import time
 import string
 import time
 
-def waitforinstances():
+def waitforinstances(emi):
     while True:
-        print "euca-describe-instances |grep pending"   
+        print "euca-describe-instances | grep "+emi+" |grep pending"   
         p=subprocess.Popen("euca-describe-instances| grep pending ", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         numlines=0
         for line in p.stdout.readlines():
@@ -34,7 +34,15 @@ def main():
     vmtype= string.rstrip(vmtype)
     print 'instance type: '+vmtype
     
-    print "euca-run-instances -n "+num+" -t "+vmtype+" "+ emi
+    keypair=f.readline()
+    keypair= string.rstrip(keypair)
+    print 'instance type: ' + keypair
+    
+    if keypair!='':
+	print "euca-run-instances -n "+num+" -t "+vmtype+" -k "+ keypair+" "+ emi 
+
+    else :
+    	print "euca-run-instances -n "+num+" -t "+vmtype+" "+ emi
 
     #elapsed =time.time()-start
     #print "start up time for euca-run-instances -n "+num+" -t "+vmtype+" "+ emi+":\n"+ str(elapsed)
@@ -44,13 +52,19 @@ def main():
     
     if (confirmation=='Y'):
  	start = time.time()	
-        print "euca-run-instances -n "+num+" -t "+vmtype+" "+ emi    
-        p=subprocess.Popen("euca-run-instances -n "+num+" -t "+vmtype+" "+ emi , shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        for line in p.stdout.readlines():
+	if keypair=='':
+	        print "euca-run-instances -n "+num+" -t "+vmtype+" "+ emi
+	        p=subprocess.Popen("euca-run-instances -n "+num+" -t "+vmtype+" "+ emi , shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+	else: 
+		print "euca-run-instances -n "+num+" -t "+vmtype+" -k "+ keypair+" "+ emi
+		p=subprocess.Popen("euca-run-instances -n "+num+" -t "+vmtype+" -k "+ keypair+" "+ emi, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
+        
+	for line in p.stdout.readlines():
             print line
         f.close()
         
-        waitforinstances()
+        waitforinstances(emi)
         elapsed =time.time()-start
 	print "start up time for euca-run-instances -n "+num+" -t "+vmtype+" "+ emi+":\n"+ str(elapsed)
 
