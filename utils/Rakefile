@@ -1,15 +1,15 @@
-PUPPETMASTER = 'ec2-23-22-49-54.compute-1.amazonaws.com'
+PUPPETMASTER ='ec2-184-73-118-46.compute-1.amazonaws.com'
 USER = 'root'
 SSH= 'ssh '
 SSHNOCHECK= ' ssh -o StrictHostKeyChecking=no '
-PERMFILE = '~/.hpcfy/robotkeypair.pem'
+PERMFILE ='~/.hpcfy/robotkeypair.pem'
 
 
 GITHUBREPONAME= 'git@github.com:moutai/hpcfy.git'
 LOCALREPONAME= 'mtaifi@tec.hpc.temple.edu:~/hpcfy.git'
+GITREADONLY= 'git://github.com/moutai/hpcfy.git'
 
-
-REPONAME = GITHUBREPONAME
+REPONAME = GITREADONLY
 
 task :deploy do
 sh "git checkout master; git pull origin master"
@@ -30,7 +30,7 @@ sh "#{SSH} #{USER}@#{PUPPETMASTER} 'ssh -T -o StrictHostKeyChecking=no git@githu
 end
 
 task :cleandeploydevelopaws do
-sh "#{SSH}' -i ' #{PERFILE} ' '#{USER}@#{PUPPETMASTER} 'ssh -T -o StrictHostKeyChecking=no git@github.com;cd /etc/puppet; rm -r /etc/puppet/*; git clone #{REPONAME} ./ ; git checkout -b developaws origin/developaws;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster restart'"
+sh "#{SSH} -i #{PERMFILE} #{USER}@#{PUPPETMASTER} 'cd /etc/puppet; rm -r /etc/puppet/*; git clone #{REPONAME} ./ ; git checkout -b develop-aws origin/develop-aws;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster restart'"
 end
 
 task :applydevelop do

@@ -2,20 +2,54 @@ import os
 import subprocess
 import fileinput
 
-f = open('hosts', 'r')
-line=f.readline()
+hostfile = open('hosts', 'r')
+infofile= open('instances-info')
+rakefile= open('Rakefile.template','r')
+newrakefile= open('Rakefile','w')
+
+
+infolines = infofile.readlines()
+infofile.close()
+print infolines[3]
+permfile = infolines[3].strip().rstrip()
+permfilepath="~/.hpcfy/"+permfile+".pem"
+
+line=hostfile.readline()
 ip=line.strip().rstrip()
 line=line.split()
+ip= line[0]
+print ip
+print permfilepath
 
 
-if line[1]=="clusternode0":	
-	print line
-	for line1 in fileinput.input("Rakefile",inplace=0):
-		print line1	
-		#lineR=lineR.strip()
-		#if lineR.startswith("PUPPETMASTER"):
-	#		print "PUPPETMASTER='%s'" % line[0]
-	#	else:
-	#		print lineR	
+for oldline in rakefile.readlines():
+	if oldline.find("PUPPETMASTER =")!=-1: 
+		print oldline
+		oldline="PUPPETMASTER ='"+str(ip)+"'\n"
+		print oldline
 
-f.close()
+	if oldline.find("PERMFILE =")!=-1: 
+		print oldline
+		oldline="PERMFILE ='"+str(permfilepath)+"'\n"
+		print oldline
+	
+	newrakefile.write(oldline)
+	
+
+
+
+hostfile.close()
+infofile.close()
+rakefile.close()
+newrakefile.close()
+
+
+
+
+
+
+
+
+
+
+

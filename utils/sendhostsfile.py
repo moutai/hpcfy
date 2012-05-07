@@ -14,6 +14,7 @@ permfilepath="~/.hpcfy/"+permfile+".pem"
 for line in f.readlines():
 	ip=line.strip().rstrip()
 	line=line.split()
+
 	if len(sys.argv)>1 and sys.argv[1]=="aws":
 		print "cat hosts | ssh -i "+ permfilepath+" root@"+line[0]+" \"cat>>/etc/hosts\""
 		p=subprocess.Popen("cat hosts | ssh -i "+ permfilepath+" root@"+line[0]+" \"cat>>/etc/hosts\"", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)

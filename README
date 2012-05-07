@@ -4,12 +4,13 @@ Author: Moussa Taifi
 
 This is a puppet project to create an mpi or hadoop-ready cluster out of virtual machines. The utilities are geared more specifically towards using an eucalyptus private cloud account. The puppet part of this project can be used for any virtual machine, be it private or public cloud. It provide basic capabilities for creating a shared nfs filesystem, user home directories, password-less key setup and basic HPC packages management (gcc, mpi,...).
 
+The following are the directions for the private cloud setup. 
+For the Amazon support there are a couple additional steps and the whole process is described at the end of this page
 
 
-Getting Started
+
+Getting Started for Eucalyptus
 Change to the utils directory and make sure that the euca2ools are working
-
-
 
 Step 1 Initialization
 
@@ -74,6 +75,92 @@ mahout jar yourjar name-of-run
 
 
 
+
+
+
+Amazon support Section
+
+Create a folder ~/.hpcfy/
+place a keypair private key in this folder yourkeypair.pem
+
+place an hpcfyrc file in this folder with the content:
+
+	export EC2_ACCESS_KEY='xxxxxxx'
+	export EC2_SECRET_KEY='xxxxxxx'
+	export EC2_URL=http://ec2.amazonaws.com
+
+source this file: source ~/hpcfy/hpcfyrc
+
+Change to the utils directory and make sure that the euca2ools are working with the new keys
+
+Step 1 Initialization
+
+modify the instances-info file to match the ami that you would like to use
+	ami
+	number of instances to be launched
+	type of instance
+	keypair name
+
+	example:
+	ami-0afwe963
+	2
+	m1.small
+	xxxxxxxxx
+
+start the instances
+	python startinstances.py
+wait for instances to start
+	wait......:)
+get the ips
+	python getips.py aws
+set the hostnames
+	python sethostnames.py aws
+send the hosts file
+	python sendhostsfile.py aws
+install puppetmaster on master and puppet on puppet clients
+	python installpuppet.py
+install git to the clusternode0, set up the git init and the remote git hub repo.
+	python installgit.py
+deploy initial config to clusternode0
+	python setrakefile.py
+	rake cleandeploydevelopaws
+copy puppet conf to all the nodes and restart services
+	python copypuppetconf.py
+sign the certificates of the nodes
+	python signcerts.py
+	
+	
+Step 2 update commit deploy
+
+deploy initial config to clusternode0
+	rake deploydevelop or rake deploy
+trigger apply to all nodes 
+	python triggerapplyall.py	
+	
+	
+	
+Step 3 creating the beowulf cluster
+
+add the necessary hpc software needed for the deployment under hpcfy / manifests / classes / hpcsoft.pp
+
+
+
+
+Hadoop/Mahout considerations
+
+To start a local hadoop cluster this is the steps to follow:
+
+cd hpcfy/utils
+sh logintomaster.sh
+su hpcuser
+hadoop namenode -format
+start-all.sh
+
+This should start a hadoop cluster composed of all your nodes. 
+
+For running Mahout, the current Mahout version from the cloudera distribution is available and is accessible using 
+
+mahout jar yourjar name-of-run
 
 
 
