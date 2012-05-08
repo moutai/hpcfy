@@ -30,7 +30,7 @@ sh "#{SSH} #{USER}@#{PUPPETMASTER} 'ssh -T -o StrictHostKeyChecking=no git@githu
 end
 
 task :cleandeploy do
-sh "#{SSH} #{USER}@#{PUPPETMASTER} 'rm -r /etc/puppet/*;rm -r /etc/puppet/.??*; cd /etc/puppet; git clone #{REPONAME} ./ ; git checkout master ;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster restart'"
+sh "#{SSH} #{USER}@#{PUPPETMASTER} 'rm -r /etc/puppet/*;rm -r /etc/puppet/.??*; cd /etc/puppet; git clone #{REPONAME} ./ ; git checkout master ;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster force-reload'"
 end
 
 task :cleandeploydevelop do
