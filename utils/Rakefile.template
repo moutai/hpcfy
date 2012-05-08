@@ -1,8 +1,8 @@
-PUPPETMASTER ='10.80.160.13'
+PUPPETMASTER = 'ec2-23-22-49-54.compute-1.amazonaws.com'
 USER = 'root'
 SSH= 'ssh '
 SSHNOCHECK= ' ssh -o StrictHostKeyChecking=no '
-PERMFILE ='~/.hpcfy/permfile.pem'
+PERMFILE = '~/.hpcfy/robotkeypair.pem'
 
 
 GITHUBREPONAME= 'git@github.com:moutai/hpcfy.git'
