@@ -11,9 +11,14 @@ GITREADONLY= 'git://github.com/moutai/hpcfy.git'
 
 REPONAME = GITREADONLY
 
-task :deploy do
+task :deploy2 do
 sh "git checkout master; git pull origin master"
 sh "#{SSH} #{USER}@#{PUPPETMASTER} 'cd /etc/puppet; git pull origin master; chown -R puppet:puppet /etc/puppet'"
+end
+
+task :deploy do
+sh "git checkout master;git pull origin master;git fetch"
+sh "#{SSH} #{USER}@#{PUPPETMASTER} 'cd /etc/puppet; git checkout develop; git pull origin develop; git fetch; chown -R puppet:puppet /etc/puppet'"
 end
 
 task :deploydevelop do
@@ -21,8 +26,12 @@ sh "git checkout develop;git pull origin develop;git fetch"
 sh "#{SSH} #{USER}@#{PUPPETMASTER} 'cd /etc/puppet; git checkout develop; git pull origin develop; git fetch; chown -R puppet:puppet /etc/puppet'"
 end
 
-task :cleandeploy do
+task :cleandeploy2 do
 sh "#{SSH} #{USER}@#{PUPPETMASTER} 'ssh -T -o StrictHostKeyChecking=no git@github.com;cd /etc/puppet; rm -r /etc/puppet/*; git clone #{REPONAME} ./ ;git checkout -b develop origin/develop;git checkout master;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster restart'"
+end
+
+task :cleandeploy do
+sh "#{SSH} #{USER}@#{PUPPETMASTER} 'cd /etc/puppet; rm -r /etc/puppet/*; git clone #{REPONAME} ./ ; git checkout -b master origin/master;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster restart'"
 end
 
 task :cleandeploydevelop do
@@ -48,7 +57,7 @@ end
 
 task :apply do
 client = ENV['CLIENT']
-sh "#{SSH} #{USER}@#{client} 'puppet agent --test --verbose'" do |ok, status|
+sh "#{SSHNOCHECK} #{USER}@#{client} 'puppet agent --test --verbose'" do |ok, status|
 puts case status.exitstatus
 when 0 then "Client is up to date."
 when 1 then "Puppet couldn't compile the manifest."

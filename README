@@ -31,24 +31,27 @@ install puppetmaster on master and puppet on puppet clients
 	python installpuppet.py
 install git to the clusternode0, set up the git init and the remote git hub repo.
 	python installgit.py
+
+Step 2 Initial puppet configuration
+
 deploy initial config to clusternode0
-	rake cleandeploydevelop or rake cleandeploy 
+	rake cleandeploy or rake cleandeploydevelop
 copy puppet conf to all the nodes and restart services
 	python copypuppetconf.py
 sign the certificates of the nodes
 	python signcerts.py
 	
 	
-Step 2 update commit deploy
+Step 3 update your puppet config, commit and deploy
 
 deploy initial config to clusternode0
-	rake deploydevelop or rake deploy
+	rake deploy or rake deploydevelop
 trigger apply to all nodes 
 	python triggerapplyall.py	
 	
 	
 	
-Step 3 creating the beowulf cluster
+Step 4 creating the beowulf cluster
 
 add the necessary hpc software needed for the deployment under hpcfy / manifests / classes / hpcsoft.pp
 
