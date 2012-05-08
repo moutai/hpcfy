@@ -13,10 +13,9 @@ print 'Adding the public key linked to this account, to all the nodes discovered
 for line in f.readlines():
 	ip=line.strip().rstrip()
 	line=line.split()
-	#print "cat  ~/.ssh/id_rsa.pub | ssh root@"+line[0]+" \"cat>>~/.ssh/authorized_keys2\""
-	print "scp /home/"+getpass.getuser()+"/.ssh/authorized_keys2 root@"+line[0]+":/root/.ssh/authorized_keys"
+	print "scp ~/.ssh/authorized_keys2 root@"+line[0]+":/root/.ssh/authorized_keys"
 
-	p=pexpect.spawn("scp /home/"+getpass.getuser()+"/.ssh/authorized_keys2 root@"+line[0]+":/root/.ssh/authorized_keys")
+	p=pexpect.spawn("scp ~/.ssh/authorized_keys2 root@"+line[0]+":/root/.ssh/authorized_keys")
 	i=p.expect([ssh_newkey,'password:',pexpect.EOF])
 	print p.before
 	if i==0:
