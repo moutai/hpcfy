@@ -2,10 +2,46 @@ import os
 import subprocess
 import pexpect
 import getpass 
+import sys
+import os.path
+from M2Crypto import RSA
+import shutil
+homedir = os.path.expanduser('~')
+
+def checkkeys():
+	priv=homedir+"/.ssh/id_rsa"
+	pub=homedir+"/.ssh/id_rsa.pub"
+	if (os.path.isfile(priv)==False or os.path.isfile(pub)==False):
+		return False
+	else:
+		return True
+
+def generatekeys():
+	key = RSA.gen_key(1024, 65337)
+	key.save_key("id_rsa", cipher=None)
+	shutil.move("id_rsa", homedir+"/.ssh/id_rsa")
+	os.chmod(homedir+'/.ssh/id_rsa', 0400)
+
+	os.system('ssh-keygen -y -f '+homedir+'/.ssh/id_rsa'+' > '+homedir+'/.ssh/id_rsa.pub' )
+	os.system('cat '+homedir+'/.ssh/id_rsa.pub >> '+homedir+'/.ssh/authorized_keys2')
+
+	return True
+
+#check if the public and private keys are generated otherwise generate them
+if checkkeys()==False:
+	print 'please generate a set of keys to be used for the rest of the deployment'
+	print 'Keys needed: ~/.ssh/id_rsa and ~/.ssh/id_rsa.pub'
+	keydecision=raw_input("Press Y if you want hpcfy to generate them for you:\n")
+	if keydecision=='Y':
+		generatekeys()
+		
+	else:
+		print'ok bye'
+		sys.exit(0)
+
 
 
 ssh_newkey = 'Are you sure you want to continue connecting'
-
 
 f = open('hosts', 'r')
 print 'Adding the public key linked to this account, to all the nodes discovered :'
@@ -13,9 +49,9 @@ print 'Adding the public key linked to this account, to all the nodes discovered
 for line in f.readlines():
 	ip=line.strip().rstrip()
 	line=line.split()
-	print "scp ~/.ssh/authorized_keys2 root@"+line[0]+":/root/.ssh/authorized_keys"
+	print "scp "+homedir+"/.ssh/authorized_keys2 root@"+line[0]+":/root/.ssh/authorized_keys"
 
-	p=pexpect.spawn("scp ~/.ssh/authorized_keys2 root@"+line[0]+":/root/.ssh/authorized_keys")
+	p=pexpect.spawn("scp "+homedir+"/.ssh/authorized_keys2 root@"+line[0]+":/root/.ssh/authorized_keys")
 	i=p.expect([ssh_newkey,'password:',pexpect.EOF])
 	print p.before
 	if i==0:
@@ -32,12 +68,4 @@ for line in f.readlines():
     		pass
 	print p.before # print out the result
 	
-
-#p=subprocess.Popen("cat  ~/.ssh/id_rsa.pub | ssh root@"+line[0]+" \"cat>>~/.ssh/authorized_keys2\"", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-	#for line1 in p.stdout.readlines():
-             #   print line1
 f.close()
-
-
-#euca-describe-instances | awk -F" " '{print $4}'| grep 10| sort > ips.txt
-#cat ips.txt
