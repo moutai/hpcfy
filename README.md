@@ -1,17 +1,72 @@
-Overview
+# Hpcfy overview
 Author: Moussa Taifi
-
 
 This is a puppet project to create an mpi or hadoop-ready cluster out of virtual machines. The utilities are geared more specifically towards using an eucalyptus private cloud account. The puppet part of this project can be used for any virtual machine, be it private or public cloud. It provide basic capabilities for creating a shared nfs filesystem, user home directories, password-less key setup and basic HPC packages management (gcc, mpi,...).
 
 
+*Getting Started:
 
-Getting Started
-Change to the utils directory and make sure that the euca2ools are working
+*Step 0 setting the environment
+
+Clone this project and change to the utils directory. 
+Make sure that the euca2ools are working with your eucalyptus credentials.
+Change the path 'export HPCFY_PATH=~/hpcfy' in utils/hpcfyrc to the cloned folder.
+source utils/hpcfyrc to get the hpcfy binary in your path.
+
+*Step 1 
+	Select and start instances
+	Modify the utils/instance-info file to describe the cluster:
+		File content:		
+			image-id
+			number of clusternodes
+			type of clusternodes
+			permission file/keypair.private
+	Start the cluster:
+		hpcfy startcluster
+
+*Step 2 
+	Initialize the cluster:
+		hpcfy initialize
+
+*Step 3 
+	Apply the configuration:
+		hpcfy applyconfig
+
+*Step 4
+	Login to the master node:
+		hpcfy logintomaster
+
+*Step 5 
+	Play around
+		......
 
 
 
-Step 1 Initialization
+
+*Hadoop/Mahout considerations
+
+To start a local hadoop cluster this is the steps to follow:
+
+cd hpcfy/utils
+sh logintomaster.sh
+su hpcuser
+hadoop namenode -format
+start-all.sh
+
+This should start a hadoop cluster composed of all your nodes. 
+
+For running Mahout, the current Mahout version from the cloudera distribution is available and is accessible using 
+
+mahout jar yourjar name-of-run
+
+
+
+	
+	
+
+
+
+*Step 1 Initialization
 
 	start the instances
 		python startinstances.py
