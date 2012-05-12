@@ -40,8 +40,8 @@ Run 'source utils/hpcfyrc' to get the hpcfy binary in your path.
 		hpcfy logintomaster
 
 ###Step 5 
-	Play around
-		......
+	Cluster monitoring is located at
+		http://master-ip/ganglia
 
 
 
@@ -50,13 +50,17 @@ Run 'source utils/hpcfyrc' to get the hpcfy binary in your path.
 
 To start a local hadoop cluster this is the steps to follow:
 
-cd hpcfy/utils
-sh logintomaster.sh
-su hpcuser
-hadoop namenode -format
-start-all.sh
+	cd hpcfy/utils
+	sh logintomaster.sh
+	su hpcuser
+	hadoop namenode -format
+	start-all.sh
 
 This should start a hadoop cluster composed of all your nodes. 
+	Hadoop monitoring is located at:
+		http://master-ip:50070/dfshealth.jsp
+		http://master-ip:50030/jobtracker.jsp
+		http://master-ip:50060/tasktracker.jsp
 
 For running Mahout, the current Mahout version from the cloudera distribution is available and is accessible using 
 
