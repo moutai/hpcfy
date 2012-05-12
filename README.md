@@ -4,16 +4,16 @@ Author: Moussa Taifi
 This is a puppet project to create an mpi or hadoop-ready cluster out of virtual machines. The utilities are geared more specifically towards using an eucalyptus private cloud account. The puppet part of this project can be used for any virtual machine, be it private or public cloud. It provide basic capabilities for creating a shared nfs filesystem, user home directories, password-less key setup and basic HPC packages management (gcc, mpi,...).
 
 
-*Getting Started:
+##Getting Started:
 
-*Step 0 setting the environment
+###Step 0 setting the environment
 
 Clone this project and change to the utils directory. 
 Make sure that the euca2ools are working with your eucalyptus credentials.
 Change the path 'export HPCFY_PATH=~/hpcfy' in utils/hpcfyrc to the cloned folder.
 source utils/hpcfyrc to get the hpcfy binary in your path.
 
-*Step 1 
+###Step 1 
 	Select and start instances
 	Modify the utils/instance-info file to describe the cluster:
 		File content:		
@@ -24,26 +24,26 @@ source utils/hpcfyrc to get the hpcfy binary in your path.
 	Start the cluster:
 		hpcfy startcluster
 
-*Step 2 
+###Step 2 
 	Initialize the cluster:
 		hpcfy initialize
 
-*Step 3 
+###Step 3 
 	Apply the configuration:
 		hpcfy applyconfig
 
-*Step 4
+###Step 4
 	Login to the master node:
 		hpcfy logintomaster
 
-*Step 5 
+###Step 5 
 	Play around
 		......
 
 
 
 
-*Hadoop/Mahout considerations
+###Hadoop/Mahout considerations
 
 To start a local hadoop cluster this is the steps to follow:
 
@@ -63,7 +63,7 @@ mahout jar yourjar name-of-run
 
 	
 	
-
+More detailed documentation for dev:
 
 
 *Step 1 Initialization
