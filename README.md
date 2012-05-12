@@ -71,7 +71,7 @@ mahout jar yourjar name-of-run
 
 	
 	
-More detailed documentation for dev:
+###More detailed documentation for dev:
 
 
 *Step 1 Initialization
