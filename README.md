@@ -57,6 +57,7 @@ To start a local hadoop cluster this is the steps to follow:
 	start-all.sh
 
 This should start a hadoop cluster composed of all your nodes. 
+
 	Hadoop monitoring is located at:
 		http://master-ip:50070/dfshealth.jsp
 		http://master-ip:50030/jobtracker.jsp
