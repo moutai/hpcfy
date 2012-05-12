@@ -6,7 +6,8 @@ import subprocess
 
 f = open('hosts', 'r')
 
-versionkey=raw_input("Enter the deployment version: (M)aster(stable), (D)evelopement \n")
+#raw_input("Enter the deployment version: (M)aster(stable), (D)evelopement \n")
+versionkey='M'
 
 if versionkey=='M':
 	print 'Applying the stable version of repository'
