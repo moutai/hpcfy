@@ -9,8 +9,11 @@ This is a puppet project to create an mpi or hadoop-ready cluster out of virtual
 ###Step 0 setting the environment
 
 Clone this project and change to the utils directory. 
+
 Make sure that the euca2ools are working with your eucalyptus credentials.
+
 Change the path 'export HPCFY_PATH=~/hpcfy' in utils/hpcfyrc to the cloned folder.
+
 source utils/hpcfyrc to get the hpcfy binary in your path.
 
 ###Step 1 
