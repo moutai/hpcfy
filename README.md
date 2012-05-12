@@ -50,8 +50,7 @@ Run 'source utils/hpcfyrc' to get the hpcfy binary in your path.
 
 To start a local hadoop cluster this is the steps to follow:
 
-	cd hpcfy/utils
-	sh logintomaster.sh
+	hpcfy logintomaster
 	su hpcuser
 	hadoop namenode -format
 	start-all.sh
