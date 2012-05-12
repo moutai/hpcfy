@@ -14,7 +14,7 @@ Make sure that the euca2ools are working with your eucalyptus credentials.
 
 Change the path 'export HPCFY_PATH=~/hpcfy' in utils/hpcfyrc to the cloned folder.
 
-source utils/hpcfyrc to get the hpcfy binary in your path.
+Run 'source utils/hpcfyrc' to get the hpcfy binary in your path.
 
 ###Step 1 
 	Select and start instances
