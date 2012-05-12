@@ -1,0 +1,55 @@
+#! /usr/bin/env python
+
+import sys
+import os
+
+hpcfydir= str(os.environ['HPCFY_PATH'])+r'/utils'
+#print hpcfydir
+
+if (len(sys.argv) ==1 or sys.argv[1]=='help'):
+
+	print 'Welcome to hpcfy: \nplease choose an action:\n '
+	print 'startcluster 	start instances specified in instances-info'	
+	print 'initialize	initialize cluster configuration'
+	print 'applyconfig	apply puppet configuration to all nodes'
+	print 'listnodes	list the cluster nodes'
+	print 'logintomaster	login to the master node'
+	print 'terminatecluster	terminate all the nodes'
+	print 'help		display this menu\n '
+
+elif (sys.argv[1]=='startcluster'):
+	#print 'you selected startcluster'
+	os.system("cd "+hpcfydir+";"+"python startinstances.py;")
+
+elif (sys.argv[1]=='initialize'):
+	os.system("cd "+hpcfydir+";"+"python getips.py;")
+	os.system("cd "+hpcfydir+";"+"python copyprivkey.py;")
+	os.system("cd "+hpcfydir+";"+"python sethostnames.py;")
+	os.system("cd "+hpcfydir+";"+"python sendhostsfile.py;")
+	os.system("cd "+hpcfydir+";"+"python installpuppet.py;")
+	os.system("cd "+hpcfydir+";"+"python installgit.py;")
+	os.system("cd "+hpcfydir+";"+"python setrakefile.py;")
+	os.system("cd "+hpcfydir+";"+"rake cleandeploy;")
+	os.system("cd "+hpcfydir+";"+"python copypuppetconf.py;")
+	os.system("cd "+hpcfydir+";"+"python signcerts.py;")
+
+elif (sys.argv[1]=='applyconfig'):
+	os.system("cd "+hpcfydir+";"+"python triggerapplyall.py;")
+
+elif (sys.argv[1]=='listnodes'):
+	os.system("cd "+hpcfydir+";"+"python getips.py;")
+
+
+elif (sys.argv[1]=='logintomaster'):
+	os.system("cd "+hpcfydir+";"+"sh logintomaster.sh")
+
+elif (sys.argv[1]=='terminatecluster'):
+	confirmation=raw_input ('Please confirm your action (terminate all instances) Y/N:')
+	if (confirmation=='Y'):
+		os.system("cd "+hpcfydir+";"+"rake terminateallinstances")
+	else:
+		print 'ok bye;'
+
+else :
+	print '\nUnknown command: \nPlease use (hpcfy help) for available actions\n'
+

@@ -1,0 +1,2 @@
+export HPCFY_PATH=~/hpcfy
+export PATH=$PATH:$HPCFY_PATH/utils
