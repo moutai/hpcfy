@@ -36,6 +36,8 @@ elif (sys.argv[1]=='initialize'):
 
 elif (sys.argv[1]=='applyconfig'):
 	os.system("cd "+hpcfydir+";"+"python triggerapplyall.py;")
+	os.system("cd "+hpcfydir+";"+"python triggerapplyall.py;")
+	os.system("cd "+hpcfydir+";"+"python triggerapplyall.py;")
 
 elif (sys.argv[1]=='listnodes'):
 	os.system("cd "+hpcfydir+";"+"python getips.py;")
