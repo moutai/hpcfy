@@ -23,6 +23,7 @@ elif (sys.argv[1]=='startcluster'):
 
 elif (sys.argv[1]=='initialize'):
 	os.system("cd "+hpcfydir+";"+"python getips.py;")
+	os.system("cd "+hpcfydir+";"+"python addpubkeytonodes.py;")
 	os.system("cd "+hpcfydir+";"+"python copyprivkey.py;")
 	os.system("cd "+hpcfydir+";"+"python sethostnames.py;")
 	os.system("cd "+hpcfydir+";"+"python sendhostsfile.py;")
