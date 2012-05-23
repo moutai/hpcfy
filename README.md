@@ -3,6 +3,8 @@ Author: Moussa Taifi
 
 This is a puppet project to create an mpi or hadoop-ready cluster out of virtual machines. The utilities are geared more specifically towards using an eucalyptus private cloud account. The puppet part of this project can be used for any virtual machine, be it private or public cloud. It provide basic capabilities for creating a shared nfs filesystem, user home directories, password-less key setup and basic HPC packages management (gcc, mpi,...).
 
+To see it in action(videos):
+https://sites.google.com/a/temple.edu/tcloud/cloud-clusters-hpcfy
 
 ##Getting Started:
 
