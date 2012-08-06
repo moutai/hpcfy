@@ -9,6 +9,7 @@ hpcfydir= str(os.environ['HPCFY_PATH'])+r'/utils'
 if (len(sys.argv) ==1 or sys.argv[1]=='help'):
 
 	print 'Welcome to hpcfy: \nplease choose an action:\n '
+	print 'listconfig       display the current configuration file'
 	print 'startcluster 	start instances specified in instances-info'	
 	print 'initialize	initialize cluster configuration'
 	print 'applyconfig	apply puppet configuration to all nodes'
@@ -16,6 +17,9 @@ if (len(sys.argv) ==1 or sys.argv[1]=='help'):
 	print 'logintomaster	login to the master node'
 	print 'terminatecluster	terminate all the nodes'
 	print 'help		display this menu\n '
+
+elif (sys.argv[1]=='listconfig'):
+        os.system("cd "+hpcfydir+";"+"python listconfig.py;")
 
 elif (sys.argv[1]=='startcluster'):
 	#print 'you selected startcluster'
