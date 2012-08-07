@@ -50,7 +50,7 @@ elif (sys.argv[1]=='listnodes'):
 elif (sys.argv[1]=='logintomaster'):
 	os.system("cd "+hpcfydir+";"+"sh logintomaster.sh")
 
-elif (sys.argv[1]=='terminatecluster'):
+elif (sys.argv[1]=='terminate'):
 	confirmation=raw_input ('Please confirm your action (terminate all instances) Y/N:')
 	if (confirmation=='Y'):
 		os.system("cd "+hpcfydir+";"+"rake terminateallinstances")
