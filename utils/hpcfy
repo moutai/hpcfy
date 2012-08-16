@@ -15,8 +15,10 @@ if (len(sys.argv) ==1 or sys.argv[1]=='help'):
 	print 'applyconfig	\tapply puppet configuration to all nodes'
 	print 'listnodes	\tlist the cluster nodes'
 	print 'logintomaster	\tlogin to the master node'
+	print 'copytomaster     \tcopy file to masternode'
 	print 'terminate	\tterminate all the nodes'
-	print 'help		\tdisplay this menu\n '
+        print 'version        	\tget current version number'
+       	print 'help		\tdisplay this menu\n '
 
 elif (sys.argv[1]=='listconfig'):
         os.system("cd "+hpcfydir+";"+"python listconfig.py;")
@@ -49,6 +51,12 @@ elif (sys.argv[1]=='listnodes'):
 
 elif (sys.argv[1]=='logintomaster'):
 	os.system("cd "+hpcfydir+";"+"sh logintomaster.sh")
+
+elif (sys.argv[1]=='copytomaster'):
+	if len(sys.argv)==3:
+        	os.system("cd "+hpcfydir+";"+"sh copytomaster.sh "+sys.argv[2])
+	else:	
+		print 'Error:no filename found.'
 
 elif (sys.argv[1]=='terminate'):
 	confirmation=raw_input ('Please confirm your action (terminate all instances) Y/N:')
