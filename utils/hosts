@@ -2,9 +2,9 @@
 10.80.160.14 clusternode1
 10.80.160.15 clusternode2
 10.80.160.16 clusternode3
-10.80.160.17 clusternode4
-10.80.160.18 clusternode5
-10.80.160.19 clusternode6
-10.80.160.21 clusternode7
-10.80.160.23 clusternode8
-10.80.160.24 clusternode9
+10.80.160.18 clusternode4
+10.80.160.19 clusternode5
+10.80.160.21 clusternode6
+10.80.160.23 clusternode7
+10.80.160.29 clusternode8
+10.80.160.31 clusternode9

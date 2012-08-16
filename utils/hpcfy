@@ -57,6 +57,8 @@ elif (sys.argv[1]=='terminate'):
 	else:
 		print 'ok bye;'
 
+elif (sys.argv[1]=='version'):
+        os.system("cd "+hpcfydir+";cat version-info;")
 else :
 	print '\nUnknown command: \nPlease use (hpcfy help) for available actions\n'
 
