@@ -10,9 +10,11 @@ class market-hadoop
 	}
 
 	exec { "copymarkethadoop":
-                command => "rm -rf /usr/local/hadoop; mkdir /usr/local/hadoop; cd /usr/local/hadoop/; git init; git fetch https://github.com/moutai/hadoop-common.git  branch-1.1:refs/remotes/origin/branch-1.1; git checkout --track origin/branch-1.1", 
-		creates => "/usr/local/hadoop",
+                command => "rm -rf /usr/local/hadoop; mkdir /usr/local/hadoop; cd /usr/local/hadoop/; git init; git fetch https://github.com/moutai/hadoop-common.git  branch-1.1:refs/remotes/origin/branch-1.1; git checkout --track origin/branch-1.1; ant compile-core compile-mapred", 
+		creates => "/usr/local/hadoop/build",
         }
+
+	
 
 
 ######################################
@@ -35,9 +37,15 @@ class market-hadoop
 
 
 
-###install the java openjdk
+###install the java openjdk and other tools
 
-	package { "openjdk-6-jdk": ensure => installed }
+	package { "openjdk-6-jdk": 
+			ensure => installed,
+			require => Package["ant","autoconf","libtool"], 
+		}
+	package { "ant": ensure => installed }
+	package { "autoconf": ensure => installed }
+	package { "libtool": ensure => installed }
 
 ##add the directory for testing
 	file { ["/app"]:
