@@ -1,0 +1,37 @@
+PUPPETMASTER ='10.80.160.13'
+USER = 'root'
+SSH= 'ssh '
+SSHNOCHECK= ' ssh -o StrictHostKeyChecking=no '
+PERMFILE ='~/.hpcfy/permfile.pem'
+
+GITHUBREPONAME= 'git@github.com:moutai/hpcfy.git'
+LOCALREPONAME= 'mtaifi@tec.hpc.temple.edu:~/hpcfy.git'
+GITREADONLY= 'git://github.com/moutai/hpcfy.git'
+
+REPONAME = GITREADONLY
+BRANCH = 'origin/market-hadoop-branch'
+TRACKING_OPT = '--track'
+
+task :cleandeploy do
+sh "#{SSH} #{USER}@#{PUPPETMASTER} 'rm -r /etc/puppet/*;rm -r /etc/puppet/.??*; cd /etc/puppet; git clone #{REPONAME} ./ ; git checkout #{TRACKING_OPT} #{BRANCH} ;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster force-reload'"
+end
+
+task :apply do
+client = ENV['CLIENT']
+sh "#{SSHNOCHECK} #{USER}@#{client} 'puppet agent --test --verbose'" do |ok, status|
+puts case status.exitstatus
+when 0 then "Client is up to date."
+when 1 then "Puppet couldn't compile the manifest."
+when 2 then "Puppet made changes."
+when 4 then "Puppet found errors."
+end
+end
+end
+
+task :terminateallinstances do
+sh "euca-describe-instances|grep -e 'INSTANCE'|awk -F \" \" '\{print \$2\}'| while read line; do euca-terminate-instances \$line ; done"
+end
+
+task :terminatependinginstances do
+sh "euca-describe-instances|grep pending|grep -e 'INSTANCE'|awk -F \" \" '\{print \$2\}'| while read line; do euca-terminate-instances \$line ; done"
+end

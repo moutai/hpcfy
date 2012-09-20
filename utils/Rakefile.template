@@ -9,10 +9,11 @@ LOCALREPONAME= 'mtaifi@tec.hpc.temple.edu:~/hpcfy.git'
 GITREADONLY= 'git://github.com/moutai/hpcfy.git'
 
 REPONAME = GITREADONLY
-BRANCH = 'market-hadoop-branch'
+BRANCH = 'origin/market-hadoop-branch'
+TRACKING_OPT = '--track'
 
 task :cleandeploy do
-sh "#{SSH} #{USER}@#{PUPPETMASTER} 'rm -r /etc/puppet/*;rm -r /etc/puppet/.??*; cd /etc/puppet; git clone #{REPONAME} ./ ; git checkout #{REPONAME} ;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster force-reload'"
+sh "#{SSH} #{USER}@#{PUPPETMASTER} 'rm -r /etc/puppet/*;rm -r /etc/puppet/.??*; cd /etc/puppet; git clone #{REPONAME} ./ ; git checkout #{TRACKING_OPT} #{BRANCH} ;chown -R puppet:puppet /etc/puppet ; /etc/init.d/puppetmaster force-reload'"
 end
 
 task :apply do

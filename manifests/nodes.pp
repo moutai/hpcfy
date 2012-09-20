@@ -9,7 +9,7 @@ node default {
 	#User["hpcuser"]{groups=> ["hpcuser","hadoop"]}
 	realize( Group["hpcuser"],Group["hadoop"],User["hpcuser"])
 	include hpcsoft
-	include hadoop
+	include market-hadoop
 	include ganglia-client
 	
 	#include nasbenchsoft
@@ -25,7 +25,7 @@ node "clusternode0" inherits default{
 	allowed => "10.80.160.0/24",
 	options => "rw,sync,no_root_squash",
 	} 
-	include hadoop
+	include market-hadoop
 	include ganglia-client
 	include ganglia-server	
 	
