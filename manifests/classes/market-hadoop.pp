@@ -3,7 +3,7 @@ class market-hadoop
 {
 	Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] } 
 
-###install java
+###install apt-fixes
 	file { "/etc/apt/sources.list.d/lucid-ppas.list":
                                 source => "puppet:///utils/apt-get-fixes/lucid-ppas.list",
                                 notify => Exec["aptupdate"],
@@ -20,14 +20,17 @@ class market-hadoop
 # hadoop_env.sh 
 	file { "/usr/local/hadoop/conf/hadoop-env.sh":
                                 source => "puppet:///utils/fileserver-files/hadoop_conf/hadoop-env.sh",
+				require => Exec["copymarkethadoop"],
 	}
 # slaves 
 	file { "/usr/local/hadoop/conf/slaves":
                                 source => "puppet:///utils/fileserver-files/hadoop_conf/slaves",
+				require => Exec["copymarkethadoop"],
 	}
-# master always clusternode01 
+# master always clusternode0
 	file { "/usr/local/hadoop/conf/masters":
                                 source => "puppet:///utils/fileserver-files/hadoop_conf/masters",
+				require => Exec["copymarkethadoop"],
 	}
 
 
