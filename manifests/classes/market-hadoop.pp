@@ -11,9 +11,23 @@ class market-hadoop
 
 	exec { "copymarkethadoop":
                 command => "rm -rf /usr/local/hadoop; mkdir /usr/local/hadoop; cd /usr/local/hadoop/; git init; git fetch https://github.com/moutai/hadoop-common.git  branch-1.1:refs/remotes/origin/branch-1.1; git checkout --track origin/branch-1.1", 
+		creates => "/usr/local/hadoop",
         }
 
-###remove the openjdk
+
+######################################
+# Config files
+# hadoop_env.sh 
+	file { "/usr/local/hadoop/conf/hadoop-env.sh":
+                                source => "puppet:///utils/fileserver-files/hadoop_conf/hadoop-env.sh",
+	}
+# slaves 
+	file { "/usr/local/hadoop/conf/slaves":
+                                source => "puppet:///utils/fileserver-files/hadoop_conf/slaves",
+	}
+
+
+###install the java openjdk
 
 	package { "openjdk-6-jdk": ensure => installed }
 

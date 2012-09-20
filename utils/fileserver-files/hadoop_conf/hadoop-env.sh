@@ -1,53 +1,58 @@
 # Set Hadoop-specific environment variables here.
 
-# The only required environment variable is JAVA_HOME. All others are
-# optional. When running a distributed configuration it is best to
+# The only required environment variable is JAVA_HOME.  All others are
+# optional.  When running a distributed configuration it is best to
 # set JAVA_HOME in this file, so that it is correctly defined on
 # remote nodes.
 
-# The java implementation to use.
-#export JAVA_HOME=/usr/lib/jvm/java-6-sun
-export JAVA_HOME=/usr/lib/jvm/java-7-oracle
+# The java implementation to use.  Required.
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
 
+# Extra Java CLASSPATH elements.  Optional.
+# export HADOOP_CLASSPATH=
 
-export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-"/etc/hadoop"}
-#export HADOOP_HOME=/usr/share/hadoop
 # The maximum amount of heap to use, in MB. Default is 1000.
-#export HADOOP_HEAPSIZE=
-#export HADOOP_NAMENODE_INIT_HEAPSIZE=""
+# export HADOOP_HEAPSIZE=2000
 
-# Extra Java runtime options. Empty by default.
-export HADOOP_OPTS="-Djava.net.preferIPv4Stack=true $HADOOP_CLIENT_OPTS"
+# Extra Java runtime options.  Empty by default.
+# export HADOOP_OPTS=-server
 
 # Command specific options appended to HADOOP_OPTS when specified
-export HADOOP_NAMENODE_OPTS="-Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT $HADOOP_NAMENODE_OPTS"
-HADOOP_JOBTRACKER_OPTS="-Dhadoop.security.logger=INFO,DRFAS -Dmapred.audit.logger=INFO,MRAUDIT -Dhadoop.mapreduce.jobsummary.logger=INFO,JSA $HADOOP_JOBTRACKER_OPTS"
-HADOOP_TASKTRACKER_OPTS="-Dhadoop.security.logger=ERROR,console -Dmapred.audit.logger=ERROR,console $HADOOP_TASKTRACKER_OPTS"
-HADOOP_DATANODE_OPTS="-Dhadoop.security.logger=ERROR,DRFAS $HADOOP_DATANODE_OPTS"
-
-export HADOOP_SECONDARYNAMENODE_OPTS="-Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT $HADOOP_SECONDARYNAMENODE_OPTS"
-
+export HADOOP_NAMENODE_OPTS="-Dcom.sun.management.jmxremote $HADOOP_NAMENODE_OPTS"
+export HADOOP_SECONDARYNAMENODE_OPTS="-Dcom.sun.management.jmxremote $HADOOP_SECONDARYNAMENODE_OPTS"
+export HADOOP_DATANODE_OPTS="-Dcom.sun.management.jmxremote $HADOOP_DATANODE_OPTS"
+export HADOOP_BALANCER_OPTS="-Dcom.sun.management.jmxremote $HADOOP_BALANCER_OPTS"
+export HADOOP_JOBTRACKER_OPTS="-Dcom.sun.management.jmxremote $HADOOP_JOBTRACKER_OPTS"
+# export HADOOP_TASKTRACKER_OPTS=
 # The following applies to multiple commands (fs, dfs, fsck, distcp etc)
-export HADOOP_CLIENT_OPTS="-Xmx128m $HADOOP_CLIENT_OPTS"
-#HADOOP_JAVA_PLATFORM_OPTS="-XX:-UsePerfData $HADOOP_JAVA_PLATFORM_OPTS"
+# export HADOOP_CLIENT_OPTS
 
-# On secure datanodes, user to run the datanode as after dropping privileges
-export HADOOP_SECURE_DN_USER=
+# Extra ssh options.  Empty by default.
+# export HADOOP_SSH_OPTS="-o ConnectTimeout=1 -o SendEnv=HADOOP_CONF_DIR"
 
-# Where log files are stored. $HADOOP_HOME/logs by default.
-export HADOOP_LOG_DIR=/var/log/hadoop/$USER
+# Where log files are stored.  $HADOOP_HOME/logs by default.
+# export HADOOP_LOG_DIR=${HADOOP_HOME}/logs
 
-# Where log files are stored in the secure data environment.
-export HADOOP_SECURE_DN_LOG_DIR=/var/log/hadoop/
+# File naming remote slave hosts.  $HADOOP_HOME/conf/slaves by default.
+# export HADOOP_SLAVES=${HADOOP_HOME}/conf/slaves
+
+# host:path where hadoop code should be rsync'd from.  Unset by default.
+# export HADOOP_MASTER=master:/home/$USER/src/hadoop
+
+# Seconds to sleep between slave commands.  Unset by default.  This
+# can be useful in large clusters, where, e.g., slave rsyncs can
+# otherwise arrive faster than the master can service them.
+# export HADOOP_SLAVE_SLEEP=0.1
 
 # The directory where pid files are stored. /tmp by default.
-export HADOOP_PID_DIR=/var/run/hadoop
-export HADOOP_SECURE_DN_PID_DIR=/var/run/hadoop
+# export HADOOP_PID_DIR=/var/hadoop/pids
 
 # A string representing this instance of hadoop. $USER by default.
-export HADOOP_IDENT_STRING=$USER
-#export HADOOP_NAMENODE_USER="hdfs"
-#export HADOOP_DATANODE_USER=$HADOOP_NAMENODE_USER
-#export HADOOP_SECONDARYNAMENODE_USER=$HADOOP_NAMENODE_USER
+# export HADOOP_IDENT_STRING=$USER
+
+# The scheduling priority for daemon processes.  See 'man nice'.
+# export HADOOP_NICENESS=10
+
+HADOOP_HOME_WARN_SUPPRESS="TRUE"
 
 
