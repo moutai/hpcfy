@@ -25,6 +25,11 @@ class market-hadoop
 	file { "/usr/local/hadoop/conf/slaves":
                                 source => "puppet:///utils/fileserver-files/hadoop_conf/slaves",
 	}
+# master always clusternode01 
+	file { "/usr/local/hadoop/conf/master":
+                                source => "puppet:///utils/fileserver-files/hadoop_conf/master",
+	}
+
 
 
 ###install the java openjdk
