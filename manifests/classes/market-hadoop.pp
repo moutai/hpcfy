@@ -27,11 +27,25 @@ class market-hadoop
 	package { "openjdk-6-jdk": ensure => purged }
 
 ##add the directory for testing
+	file { ["/app"]:
+		ensure => directory,
+		owner=> hpcuser,
+        	group => hpcuser,
+	}
+
+	file { ["/app/hadoop"]:
+		ensure => directory,
+		owner=> hpcuser,
+        	group => hpcuser,
+		require => File["/app"], 
+	}
+
 
 	file { ["/app/hadoop/tmp"]:
 		ensure => directory,
 		owner=> hpcuser,
         	group => hpcuser,
+		require => File["/app/hadoop"], 
 	}
 
 	file { "/etc/security/limits.conf":
