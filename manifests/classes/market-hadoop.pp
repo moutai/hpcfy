@@ -3,28 +3,19 @@ class market-hadoop
 {
 	Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] } 
 
-
-
-###install the sun java 7 
-
+###install java
 	file { "/etc/apt/sources.list.d/lucid-ppas.list":
                                 source => "puppet:///utils/apt-get-fixes/lucid-ppas.list",
-                                notify => Exec["aptupdate","installsunjava"],
+                                notify => Exec["aptupdate"],
 	}
 
-	exec { "installsunjava":
-                command => "apt-get --force-yes -y install oracle-java7-installer",
-		require => File["/etc/apt/sources.list.d/lucid-ppas.list"],                
-        }
-
 	exec { "copymarkethadoop":
-                command => "rm -rf /usr/local/hadoop; mkdir /usr/local/hadoop; cd /usr/local/hadoop/; git init; git fetch https://github.com/moutai/hadoop-common.git  branch-1.1:refs/remotes/origin/branch-1.1; git checkout --track origin/branch-1.1",
-		require => Exec["installsunjava"], 
+                command => "rm -rf /usr/local/hadoop; mkdir /usr/local/hadoop; cd /usr/local/hadoop/; git init; git fetch https://github.com/moutai/hadoop-common.git  branch-1.1:refs/remotes/origin/branch-1.1; git checkout --track origin/branch-1.1", 
         }
 
 ###remove the openjdk
 
-	package { "openjdk-6-jdk": ensure => purged }
+	package { "openjdk-6-jdk": ensure => installed }
 
 ##add the directory for testing
 	file { ["/app"]:
