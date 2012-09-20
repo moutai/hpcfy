@@ -26,8 +26,8 @@ class market-hadoop
                                 source => "puppet:///utils/fileserver-files/hadoop_conf/slaves",
 	}
 # master always clusternode01 
-	file { "/usr/local/hadoop/conf/master":
-                                source => "puppet:///utils/fileserver-files/hadoop_conf/master",
+	file { "/usr/local/hadoop/conf/masters":
+                                source => "puppet:///utils/fileserver-files/hadoop_conf/masters",
 	}
 
 
