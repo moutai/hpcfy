@@ -24,6 +24,13 @@ class market-hadoop
                                 source => "puppet:///utils/fileserver-files/hadoop_conf/hadoop-env.sh",
 				require => Exec["copymarkethadoop"],
 	}
+
+# hdfs-site.xml 
+	file { "/usr/local/hadoop/conf/hdfs-site.xml":
+                                source => "puppet:///utils/fileserver-files/hadoop_conf/hdfs-site.xml",
+				require => Exec["copymarkethadoop"],
+	}
+
 # slaves 
 	file { "/usr/local/hadoop/conf/slaves":
                                 source => "puppet:///utils/fileserver-files/hadoop_conf/slaves",
