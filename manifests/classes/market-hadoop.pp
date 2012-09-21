@@ -10,7 +10,7 @@ class market-hadoop
 	}
 
 	exec { "copymarkethadoop":
-                command => "rm -rf /usr/local/hadoop; mkdir /usr/local/hadoop; cd /usr/local/hadoop/; git init; git fetch https://github.com/moutai/hadoop-common.git  branch-1.1:refs/remotes/origin/branch-1.1; git checkout --track origin/branch-1.1; ant compile-core compile-mapred; chown -R hpcuser:hpcuser /usr/local/hadoop", 
+                command => "rm -rf /usr/local/hadoop; mkdir /usr/local/hadoop; cd /usr/local/hadoop/; git init; git fetch https://github.com/moutai/hadoop-common.git  branch-1.1:refs/remotes/origin/branch-1.1; git checkout --track origin/branch-1.1; ant compile-core compile-mapred examples; chown -R hpcuser:hpcuser /usr/local/hadoop", 
 		creates => "/usr/local/hadoop/build",
         }
 
