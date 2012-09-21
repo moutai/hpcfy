@@ -67,5 +67,33 @@ for line in f.readlines():
     		print "I either got key or connection timeout"
     		pass
 	print p.before # print out the result
+
+##doing it again to try to fix any problems from before
+
+for line in f.readlines():
+	ip=line.strip().rstrip()
+	line=line.split()
+	print "scp "+homedir+"/.ssh/authorized_keys2 root@"+line[0]+":/root/.ssh/authorized_keys"
+
+	p=pexpect.spawn("scp "+homedir+"/.ssh/authorized_keys2 root@"+line[0]+":/root/.ssh/authorized_keys")
+	i=p.expect([ssh_newkey,'password:',pexpect.EOF])
+	print p.before
+	if i==0:
+	    	print "I say yes"
+    		p.sendline('yes')
+    		i=p.expect([ssh_newkey,'password:',pexpect.EOF])
+	if i==1:
+		#temporary fix until we get an image with a public key injected in it. 
+    		print "I give password for testing only ",
+    		p.sendline("password")
+    		p.expect(pexpect.EOF)
+	elif i==2:
+    		print "I either got key or connection timeout"
+    		pass
+	print p.before # print out the result
+
+
+
+
 	
 f.close()
