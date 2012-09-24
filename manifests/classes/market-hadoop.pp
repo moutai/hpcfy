@@ -31,6 +31,19 @@ class market-hadoop
 				require => Exec["copymarkethadoop"],
 	}
 
+# core-site.xml 
+	file { "/usr/local/hadoop/conf/core-site.xml":
+                                source => "puppet:///utils/fileserver-files/hadoop_conf/core-site.xml",
+				require => Exec["copymarkethadoop"],
+	}
+
+# mapred-site.xml 
+	file { "/usr/local/hadoop/conf/mapred-site.xml":
+                                source => "puppet:///utils/fileserver-files/hadoop_conf/mapred-site.xml",
+				require => Exec["copymarkethadoop"],
+	}
+
+
 # slaves 
 	file { "/usr/local/hadoop/conf/slaves":
                                 source => "puppet:///utils/fileserver-files/hadoop_conf/slaves",
@@ -53,6 +66,7 @@ class market-hadoop
 	package { "ant": ensure => installed }
 	package { "autoconf": ensure => installed }
 	package { "libtool": ensure => installed }
+	package { "lynx": ensure => installed }
 
 ##add the directory for testing
 	file { ["/app"]:

@@ -4,10 +4,15 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
-     <property>
-         <name>mapred.job.tracker</name>
-         <value>clusternode0:9001</value>
-     </property>
+     <!-- In: conf/mapred-site.xml -->
+<property>
+  <name>mapred.job.tracker</name>
+  <value>clusternode0:9001</value>
+  <description>The host and port that the MapReduce job tracker runs
+  at.  If "local", then jobs are run in-process as a single map
+  and reduce task.
+  </description>
+</property>
 
 
      <property>
@@ -19,12 +24,6 @@
      <property>
          <name>mapred.tasktracker.map.tasks.maximum</name>
          <value>2</value>
-     </property>
-
-
-     <property>
-         <name>mapred.local.dir</name>
-         <value>/hadoop_data/mapred_local</value>
      </property>		
 
 	
