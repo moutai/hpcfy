@@ -1,4 +1,4 @@
-PUPPETMASTER ='10.80.160.13'
+PUPPETMASTER ='10.80.160.31'
 USER = 'root'
 SSH= 'ssh '
 SSHNOCHECK= ' ssh -o StrictHostKeyChecking=no '
